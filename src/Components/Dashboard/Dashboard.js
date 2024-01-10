@@ -5,7 +5,7 @@ const Dashboard = () => {
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center drawer-content">
         {/* Page content here */}
         {/* <h2 className="text-3xl font-bold text-black-500">
           Welcome to your Dashboard
@@ -13,18 +13,18 @@ const Dashboard = () => {
         <Outlet></Outlet>
         <label
           htmlFor="my-drawer-2"
-          className="btn btn-white border border-gray-300 mt-8 drawer-button lg:hidden"
+          className="mt-8 border border-gray-300 btn btn-white drawer-button lg:hidden"
         >
           Open drawer
         </label>
       </div>
-      <div className="drawer-side mt-16">
+      <div className="mt-8 drawer-side">
         <label
           htmlFor="my-drawer-2"
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+        <ul className="min-h-full p-4 menu w-80 bg-base-200 text-base-content">
           {/* Sidebar content here */}
           <li>
             <Link to="/">All Users</Link>

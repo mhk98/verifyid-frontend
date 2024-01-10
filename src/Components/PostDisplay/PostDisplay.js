@@ -1,11 +1,5 @@
-import React, { useState, useEffect } from "react";
-import "./PostDisplay.css";
-import {
-  useDeletePostMutation,
-  useEditPostDataMutation,
-  useEditPostMutation,
-  useGetAllPostQuery,
-} from "../../features/post/post";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   useCreateCommentMutation,
   useDeleteCommentMutation,
@@ -13,14 +7,17 @@ import {
   useGetAllCommentQuery,
 } from "../../features/comment/comment";
 import {
+  useDeletePostMutation,
+  useEditPostDataMutation,
+  useGetAllPostQuery,
+} from "../../features/post/post";
+import {
   useCreateReplyMutation,
   useDeleteReplyMutation,
   useEditReplyMutation,
   useGetAllReplyQuery,
 } from "../../features/reply/reply";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import "./PostDisplay.css";
 
 const PostDisplay = () => {
   const [posts, setPosts] = useState([]);
@@ -31,7 +28,7 @@ const PostDisplay = () => {
   const [editedComment, setEditedComment] = useState("");
   const [replys, setReplys] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const [searchResult, setSearchResult] = useState([posts]);
+  const [searchResult, setSearchResult] = useState([]);
   const [localReactions, setLocalReactions] = useState({
     like: 0,
     love: 0,
@@ -316,23 +313,21 @@ const PostDisplay = () => {
 
   console.log("searchText", searchText);
   return (
-    <div className="post-display my-12 grid grid-cols-1  max-w-2xl mx-auto border p-4">
-      <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 items-center mb-8 mx-auto">
-        <h2 className=" text-xl font-bold ">Posts</h2>
+    <div className="grid max-w-2xl grid-cols-1 p-4 mx-auto my-12 border post-display">
+      <div className="grid items-center mx-auto mb-8 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2">
+        <h2 className="text-xl font-bold ">Posts</h2>
         <div className="form-control">
           <input
             onChange={handleSearchChange}
             type="text"
             placeholder="Search"
-            className="input input-bordered w-24 md:w-auto"
+            className="w-24 input input-bordered md:w-auto"
           />
         </div>
       </div>
 
-      <div className="mx-auto max-w-xl">
-        {isLoading ? (
-          <h3 className="text-center">Loading...</h3>
-        ) : searchResult.length ? (
+      <div className="max-w-xl mx-auto">
+        {searchResult.length ? (
           searchResult.map((post) => (
             <div className="post" key={post.post_Id}>
               {/* Display post content */}
@@ -346,7 +341,7 @@ const PostDisplay = () => {
               >
                 <div className="post-header">
                   <div className="avatar placeholder">
-                    <div className=" text-neutral-content rounded-full w-12">
+                    <div className="w-12 rounded-full text-neutral-content">
                       <img
                         alt="Tailwind CSS Navbar component"
                         src={`https://verifyid-backend.onrender.com/${post.Image}`}
@@ -357,7 +352,7 @@ const PostDisplay = () => {
                 </div>
 
                 <Link
-                  className="details-btn border border-gray-400 p-1 rounded"
+                  className="p-1 border border-gray-400 rounded details-btn"
                   to={`/post/${post.post_Id}`}
                 >
                   Details
@@ -383,7 +378,7 @@ const PostDisplay = () => {
                 <div className="comment-input">
                   <input
                     type="text"
-                    className="mt-2"
+                    className="mt-2 bg-white"
                     placeholder="Write a comment..."
                     value={commentText[post.post_Id] || ""}
                     onChange={(e) => handleCommentChange(post.post_Id, e)}
@@ -411,25 +406,25 @@ const PostDisplay = () => {
                 {/* <div className="reaction-container">
                 <span
                   onClick={() => handleLocalReaction(post.post_Id, "like")}
-                  className="reaction-btn bg-white"
+                  className="bg-white reaction-btn"
                 >
                   👍 {localReactions.like}
                 </span>
                 <span
                   onClick={() => handleLocalReaction(post.post_Id, "love")}
-                  className="reaction-btn bg-white"
+                  className="bg-white reaction-btn"
                 >
                   ❤️ {localReactions.love}
                 </span>
                 <span
                   onClick={() => handleLocalReaction(post.post_Id, "laugh")}
-                  className="reaction-btn bg-white"
+                  className="bg-white reaction-btn"
                 >
                   😆 {localReactions.laugh}
                 </span>
                 <span
                   onClick={() => handleLocalReaction(post.post_Id, "angry")}
-                  className="reaction-btn bg-white"
+                  className="bg-white reaction-btn"
                 >
                   😠 {localReactions.angry}
                 </span>
@@ -461,9 +456,9 @@ const PostDisplay = () => {
                           justifyContent: "left",
                         }}
                       >
-                        <div className="avatar-group -space-x-6 rtl:space-x-reverse">
+                        <div className="-space-x-6 avatar-group rtl:space-x-reverse">
                           <div className="avatar placeholder">
-                            <div className="w-12  text-neutral-content">
+                            <div className="w-12 text-neutral-content">
                               <img
                                 alt=""
                                 src={`https://verifyid-backend.onrender.com/${post.Image}`}
@@ -477,19 +472,19 @@ const PostDisplay = () => {
                       {/* Buttons for reply, delete, and edit */}
                       <div className="flex gap-2">
                         <small
-                          className="cursor-pointer font-semibold"
+                          className="font-semibold cursor-pointer"
                           onClick={() => handleReply(comment.id)}
                         >
                           Reply
                         </small>
                         <small
-                          className="cursor-pointer font-semibold"
+                          className="font-semibold cursor-pointer"
                           onClick={() => handleEdit(comment.id)}
                         >
                           Edit
                         </small>
                         <small
-                          className="cursor-pointer font-semibold"
+                          className="font-semibold cursor-pointer"
                           onClick={() =>
                             handleDelete(comment.postPostId, comment.id)
                           }
@@ -556,9 +551,9 @@ const PostDisplay = () => {
                                   justifyContent: "left",
                                 }}
                               >
-                                <div className="avatar-group -space-x-6 rtl:space-x-reverse">
+                                <div className="-space-x-6 avatar-group rtl:space-x-reverse">
                                   <div className="avatar placeholder">
-                                    <div className="w-12  text-neutral-content">
+                                    <div className="w-12 text-neutral-content">
                                       <img
                                         alt=""
                                         src={`https://verifyid-backend.onrender.com/${image}`}
@@ -572,13 +567,304 @@ const PostDisplay = () => {
                               {/* Buttons for reply, delete, and edit */}
                               <div className="flex gap-2">
                                 <small
-                                  className="cursor-pointer font-semibold"
+                                  className="font-semibold cursor-pointer"
                                   onClick={() => handleEditReply(reply.id)}
                                 >
                                   Edit
                                 </small>
                                 <small
-                                  className="cursor-pointer font-semibold"
+                                  className="font-semibold cursor-pointer"
+                                  onClick={() =>
+                                    handleDeleteReply(
+                                      reply.postPostId,
+                                      reply.commentId,
+                                      reply.id
+                                    )
+                                  }
+                                >
+                                  Delete
+                                </small>
+                              </div>
+
+                              {/* Input field for reply */}
+                              {isReplyEditing &&
+                                replyBeingEdited === reply.id && (
+                                  <div>
+                                    <input
+                                      type="text"
+                                      placeholder="Write edit reply..."
+                                      value={editedReply}
+                                      onChange={(e) =>
+                                        handleEditedReplyTextChange(e)
+                                      }
+                                    />
+                                    <button
+                                      onClick={() =>
+                                        handleEditedReplySubmit(
+                                          reply.postPostId,
+                                          reply.commentId,
+                                          reply.id,
+                                          editedReply
+                                        )
+                                      }
+                                    >
+                                      Update Reply
+                                    </button>
+                                  </div>
+                                )}
+                            </div>
+                          ))}
+                    </div>
+                  ))}
+            </div>
+          ))
+        ) : posts.length ? (
+          posts.map((post) => (
+            <div className="post" key={post.post_Id}>
+              {/* Display post content */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div className="post-header">
+                  <div className="avatar placeholder">
+                    <div className="w-12 rounded-full text-neutral-content">
+                      <img
+                        alt="Tailwind CSS Navbar component"
+                        src={`https://verifyid-backend.onrender.com/${post.Image}`}
+                      />
+                    </div>
+                  </div>
+                  <p>{name}</p>
+                </div>
+
+                <Link
+                  className="p-1 border border-gray-400 rounded details-btn"
+                  to={`/post/${post.post_Id}`}
+                >
+                  Details
+                </Link>
+              </div>
+
+              <div className="post-content">
+                <p className="text-left">{post.Email}</p>
+                <p className="text-left">{post.Contact}</p>
+                <p className="text-left">{post.Location}</p>
+                <p className="text-left">{post.Description}</p>
+                <p className="text-left">{post.Identification}</p>
+                {post.Image && (
+                  <img
+                    src={`https://verifyid-backend.onrender.com/${post.Image}`}
+                    alt="Post"
+                  />
+                )}
+              </div>
+
+              <div className="reactions-comments">
+                {/* Comment input field */}
+                <div className="comment-input">
+                  <input
+                    type="text"
+                    className="mt-2"
+                    placeholder="Write a comment..."
+                    value={commentText[post.post_Id] || ""}
+                    onChange={(e) => handleCommentChange(post.post_Id, e)}
+                  />
+
+                  <div className="flex gap-2">
+                    <div>
+                      {comments.length > 1 ? (
+                        <small>{comments.length} Comments</small>
+                      ) : (
+                        <small>{comments.length} Comment</small>
+                      )}
+                    </div>
+
+                    <div>
+                      {replys.length > 1 ? (
+                        <small>{replys.length} Replys</small>
+                      ) : (
+                        <small>{replys.length} Reply</small>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* <div className="reaction-container">
+                <span
+                  onClick={() => handleLocalReaction(post.post_Id, "like")}
+                  className="bg-white reaction-btn"
+                >
+                  👍 {localReactions.like}
+                </span>
+                <span
+                  onClick={() => handleLocalReaction(post.post_Id, "love")}
+                  className="bg-white reaction-btn"
+                >
+                  ❤️ {localReactions.love}
+                </span>
+                <span
+                  onClick={() => handleLocalReaction(post.post_Id, "laugh")}
+                  className="bg-white reaction-btn"
+                >
+                  😆 {localReactions.laugh}
+                </span>
+                <span
+                  onClick={() => handleLocalReaction(post.post_Id, "angry")}
+                  className="bg-white reaction-btn"
+                >
+                  😠 {localReactions.angry}
+                </span>
+              </div> */}
+                <button
+                  style={{
+                    border: "1px solid #A8A8A8",
+                    backgroundColor: "white",
+                    color: "black",
+                    borderRadius: "10px",
+                  }}
+                  onClick={() => handleCommentSubmit(post.post_Id)}
+                >
+                  Post
+                </button>
+              </div>
+
+              {comments &&
+                comments
+                  .filter((comment) => comment.postPostId === post.post_Id)
+                  .map((comment) => (
+                    <div className="text-left" key={comment.id}>
+                      <div
+                        className=""
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "6px",
+                          justifyContent: "left",
+                        }}
+                      >
+                        <div className="-space-x-6 avatar-group rtl:space-x-reverse">
+                          <div className="avatar placeholder">
+                            <div className="w-12 text-neutral-content">
+                              <img
+                                alt=""
+                                src={`https://verifyid-backend.onrender.com/${post.Image}`}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <p>{comment.content}</p>
+                      </div>
+
+                      {/* Buttons for reply, delete, and edit */}
+                      <div className="flex gap-2">
+                        <small
+                          className="font-semibold cursor-pointer"
+                          onClick={() => handleReply(comment.id)}
+                        >
+                          Reply
+                        </small>
+                        <small
+                          className="font-semibold cursor-pointer"
+                          onClick={() => handleEdit(comment.id)}
+                        >
+                          Edit
+                        </small>
+                        <small
+                          className="font-semibold cursor-pointer"
+                          onClick={() =>
+                            handleDelete(comment.postPostId, comment.id)
+                          }
+                        >
+                          Delete
+                        </small>
+                      </div>
+                      {/* Input field for reply */}
+                      {isReplying && replyingTo === comment.id && (
+                        <div>
+                          <input
+                            type="text"
+                            placeholder="Write a reply..."
+                            value={replyText}
+                            onChange={handleReplyTextChange}
+                          />
+
+                          <button
+                            onClick={() =>
+                              handleReplyToComment(
+                                comment.postPostId,
+                                comment.id
+                              )
+                            }
+                          >
+                            Post Reply
+                          </button>
+                        </div>
+                      )}
+
+                      {isEditing && commentEditId === comment.id && (
+                        <div>
+                          <input
+                            type="text"
+                            placeholder="Write edit reply..."
+                            value={editReplyText}
+                            onChange={handleEditReplyTextChange}
+                          />
+                          <button
+                            onClick={() =>
+                              handleEditedCommentSubmit(
+                                comment.postPostId,
+                                comment.id
+                              )
+                            }
+                          >
+                            Update Reply
+                          </button>
+                        </div>
+                      )}
+
+                      {/* Display replies for this comment */}
+                      {replys &&
+                        replys
+                          .filter((reply) => reply.commentId === comment.id)
+                          .map((reply) => (
+                            <div className="ms-4" key={reply.id}>
+                              <div
+                                className=""
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                  gap: "6px",
+                                  justifyContent: "left",
+                                }}
+                              >
+                                <div className="-space-x-6 avatar-group rtl:space-x-reverse">
+                                  <div className="avatar placeholder">
+                                    <div className="w-12 text-neutral-content">
+                                      <img
+                                        alt=""
+                                        src={`https://verifyid-backend.onrender.com/${image}`}
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <p>{reply.content}</p>
+                              </div>
+
+                              {/* Buttons for reply, delete, and edit */}
+                              <div className="flex gap-2">
+                                <small
+                                  className="font-semibold cursor-pointer"
+                                  onClick={() => handleEditReply(reply.id)}
+                                >
+                                  Edit
+                                </small>
+                                <small
+                                  className="font-semibold cursor-pointer"
                                   onClick={() =>
                                     handleDeleteReply(
                                       reply.postPostId,
@@ -624,7 +910,7 @@ const PostDisplay = () => {
             </div>
           ))
         ) : (
-          <h3 className="text-center">No post found</h3>
+          <h3 className="text-xl text-center">No post found</h3>
         )}
       </div>
     </div>

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useGetSinglePostQuery } from "../../features/post/post";
-import { useParams } from "react-router-dom";
-import { useCreateUserNotificationMutation } from "../../features/userNotification/userNotification";
 import toast from "react-hot-toast";
+import { useParams } from "react-router-dom";
 import { useCreateAdminNotificationMutation } from "../../features/adminNotification/adminNotification";
+import { useGetSinglePostQuery } from "../../features/post/post";
+import { useCreateUserNotificationMutation } from "../../features/userNotification/userNotification";
 
 const Verify = () => {
   const { id } = useParams();
@@ -60,10 +60,10 @@ const Verify = () => {
       {posts.map((post) => (
         <div
           key={post.post_Id}
-          className="card w-2/5 bg-base-100 shadow-xl mx-auto mt-8"
+          className="w-2/5 mx-auto mt-8 shadow-xl card bg-base-100"
         >
           {/* <form onSubmit={handleNotification}> */}
-          <div className="card-body mx-auto">
+          <div className="mx-auto card-body">
             <h2 className="card-title">Name: {post.Name}</h2>
             <p>Email: {post.Email}</p>
             <p>Contact: {post.Contact}</p>
@@ -73,13 +73,14 @@ const Verify = () => {
             <div className="form-group">
               <label htmlFor="username">Please match your Id number</label>
               <input
-                className="form-input border"
+                className="border form-input"
                 type="text"
                 name="Name"
                 id="username"
                 onChange={(e) => setIdNumber(e.target.value)}
                 required
               />
+              <br />
               <button
                 className={`bg-green-500 p-2 text-white ${
                   isMatch ? "" : "opacity-50 cursor-not-allowed"

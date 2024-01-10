@@ -1,9 +1,8 @@
-import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
-import "./AddPost.css";
+import { useNavigate } from "react-router-dom";
 import { useCreatePostMutation } from "../../features/post/post";
+import "./AddPost.css";
 const AddPost = () => {
   const navigate = useNavigate();
   const [image, setImage] = useState("");
@@ -52,13 +51,15 @@ const AddPost = () => {
     }
   };
   return (
-    <div className=" mx-w-2xl grid grid-cols-1">
-      <h3 className="text-xl font-bold">Add Lost/Found Post</h3>
+    <div className="grid grid-cols-1 mx-w-2xl">
+      <h3 className="mt-8 text-xl font-bold text-center">
+        Add Lost/Found Post
+      </h3>
       <form onSubmit={handleSubmit} className="add-post-form">
         <div className="form-group">
           <label htmlFor="username">Name</label>
           <input
-            className="form-input border"
+            className="border form-input"
             type="text"
             name="Name"
             id="username"
@@ -69,7 +70,7 @@ const AddPost = () => {
         <div className="form-group">
           <label htmlFor="email">Conact No</label>
           <input
-            className="form-input border"
+            className="border form-input"
             type="text"
             name="Contact"
             id="contact"
@@ -80,7 +81,7 @@ const AddPost = () => {
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
-            className="form-input border"
+            className="border form-input"
             type="email"
             name="Email"
             id="email"
@@ -90,7 +91,7 @@ const AddPost = () => {
         </div>
 
         <select
-          className="select select-bordered w-full max-w-xs"
+          className="w-full max-w-xs select select-bordered"
           onChange={(e) => setStatus(e.target.value)}
           style={{
             outline: "none",
@@ -105,7 +106,7 @@ const AddPost = () => {
           <option>Lost</option>
         </select>
         <select
-          className="select select-bordered w-full max-w-xs"
+          className="w-full max-w-xs select select-bordered"
           onChange={(e) => setIdentification(e.target.value)}
           style={{
             outline: "none",
@@ -123,7 +124,7 @@ const AddPost = () => {
         <div className="form-group">
           <label htmlFor="password">ID Number</label>
           <input
-            className="form-input border"
+            className="border form-input"
             type="text"
             name="idNumber"
             id="idNumber"
@@ -134,7 +135,7 @@ const AddPost = () => {
         <div className="form-group">
           <label htmlFor="password">Location</label>
           <input
-            className="form-input border"
+            className="border form-input"
             type="text"
             name="location"
             id="location"
@@ -156,7 +157,7 @@ const AddPost = () => {
         <div className="form-group">
           <label htmlFor="password">Image</label>
           <input
-            className="form-input border"
+            className="border form-input"
             type="file"
             name="image"
             id="image"
@@ -168,7 +169,7 @@ const AddPost = () => {
         <button
           type="submit"
           variant="primary"
-          className="bg-primary p-2 mb-8 text-white"
+          className="p-2 mb-8 text-white bg-primary"
           style={{ width: "100px" }}
         >
           Submit

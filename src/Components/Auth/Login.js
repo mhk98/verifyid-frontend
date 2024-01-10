@@ -45,7 +45,7 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container mt-20">
+    <div className="mt-20 login-container">
       <h3 className="">Login</h3>
       <form onSubmit={handleSubmit} className="register-form">
         <div className="form-group">
@@ -53,11 +53,11 @@ const Login = () => {
             Email
           </label>
           <input
-            className="form-input border"
+            className="border form-input"
             type="email"
             name="Email"
             id="email"
-            value={formData.email}
+            value={formData.Email}
             onChange={handleChange}
             required
           />
@@ -67,7 +67,7 @@ const Login = () => {
             Password
           </label>
           <input
-            className="form-input border"
+            className="border form-input"
             type="password"
             name="Password"
             id="password"
@@ -79,7 +79,7 @@ const Login = () => {
         <button
           type="submit"
           variant="primary"
-          className="bg-primary p-2 text-white"
+          className="p-2 text-white bg-primary"
           style={{ width: "100px" }}
         >
           Login
@@ -88,7 +88,7 @@ const Login = () => {
       <p className="mt-2">
         <span>Don't have account?</span>
         <span>
-          <Link to="/register" className="text-primary" target="_blank">
+          <Link to="/register" className="text-primary">
             {" "}
             Sign Up
           </Link>
