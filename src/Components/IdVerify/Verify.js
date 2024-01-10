@@ -60,7 +60,7 @@ const Verify = () => {
       {posts.map((post) => (
         <div
           key={post.post_Id}
-          className="card w-2/5 bg-base-100 shadow-xl mx-auto mt-8"
+          className="card bg-base-100 shadow-xl mx-auto mt-8"
         >
           {/* <form onSubmit={handleNotification}> */}
           <div className="card-body mx-auto">

@@ -316,7 +316,7 @@ const PostDisplay = () => {
 
   console.log("searchText", searchText);
   return (
-    <div className="post-display my-12 grid grid-cols-1  max-w-2xl mx-auto border p-4">
+    <div className=" my-12 grid grid-cols-1  max-w-2xl mx-auto border p-4">
       <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 items-center mb-8 mx-auto">
         <h2 className=" text-xl font-bold ">Posts</h2>
         <div className="form-control">
@@ -334,22 +334,15 @@ const PostDisplay = () => {
           <h3 className="text-center">Loading...</h3>
         ) : searchResult.length ? (
           searchResult.map((post) => (
-            <div className="post" key={post.post_Id}>
+            <div className="post grid grid-cols-1" key={post.post_Id}>
               {/* Display post content */}
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "6px",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div className="post-header">
+              <div className="grid grid-cols-2 my-6">
+                <div className="grid grid-cols-2">
                   <div className="avatar placeholder">
                     <div className=" text-neutral-content rounded-full w-12">
                       <img
                         alt="Tailwind CSS Navbar component"
-                        src={`https://verifyid-backend.onrender.com/${post.Image}`}
+                        src={`http://localhost:5000/${post.image}`}
                       />
                     </div>
                   </div>
@@ -371,10 +364,7 @@ const PostDisplay = () => {
                 <p className="text-left">{post.Description}</p>
                 <p className="text-left">{post.Identification}</p>
                 {post.Image && (
-                  <img
-                    src={`https://verifyid-backend.onrender.com/${post.Image}`}
-                    alt="Post"
-                  />
+                  <img src={`http://localhost:5000/${post.Image}`} alt="Post" />
                 )}
               </div>
 
@@ -466,7 +456,7 @@ const PostDisplay = () => {
                             <div className="w-12  text-neutral-content">
                               <img
                                 alt=""
-                                src={`https://verifyid-backend.onrender.com/${post.Image}`}
+                                src={`http://localhost:5000/${post.Image}`}
                               />
                             </div>
                           </div>
@@ -561,7 +551,7 @@ const PostDisplay = () => {
                                     <div className="w-12  text-neutral-content">
                                       <img
                                         alt=""
-                                        src={`https://verifyid-backend.onrender.com/${image}`}
+                                        src={`http://localhost:5000/${image}`}
                                       />
                                     </div>
                                   </div>
