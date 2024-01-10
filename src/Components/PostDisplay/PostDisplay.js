@@ -337,7 +337,7 @@ const PostDisplay = () => {
                     <div className="w-12 rounded-full text-neutral-content">
                       <img
                         alt="Tailwind CSS Navbar component"
-                        src={`https://verifyid-backend.onrender.com/${post.image}`}
+                        src={`https://verifyid-backend.onrender.com/${post.Image}`}
                       />
                     </div>
                   </div>
