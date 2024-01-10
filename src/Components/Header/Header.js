@@ -125,9 +125,7 @@ const Header = () => {
                         "rounded-md px-3 py-2 text-sm font-medium"
                       )}
                       aria-current={
-                        window.location.pathname === "/"
-                          ? "page"
-                          : undefined
+                        window.location.pathname === "/" ? "page" : undefined
                       }
                     >
                       Home
@@ -238,7 +236,7 @@ const Header = () => {
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img
-                        className="w-8 h-8 rounded-full"
+                        className="h-8 w-8 rounded-full"
                         src={`https://verifyid-backend.onrender.com/${image}`}
                         alt=""
                       />

@@ -1,27 +1,25 @@
-import React, { useState, useEffect } from "react";
-import "../Post/MyPost.css";
-import "../PostCreation/PostCreation.css";
-import {
-  useDeletePostMutation,
-  useEditPostDataMutation,
-  useGetAllPostQuery,
-  useGetSinglePostQuery,
-} from "../../features/post/post";
+import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useEffect, useState } from "react";
 import {
   useCreateCommentMutation,
   useDeleteCommentMutation,
   useEditCommentMutation,
   useGetAllCommentQuery,
 } from "../../features/comment/comment";
+import { useGetAllmyPostQuery } from "../../features/myPost/myPost";
+import {
+  useDeletePostMutation,
+  useEditPostDataMutation,
+} from "../../features/post/post";
 import {
   useCreateReplyMutation,
   useDeleteReplyMutation,
   useEditReplyMutation,
   useGetAllReplyQuery,
 } from "../../features/reply/reply";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
-import { useGetAllmyPostQuery } from "../../features/myPost/myPost";
+import "../Post/MyPost.css";
+import "../PostCreation/PostCreation.css";
 
 const MyPost = () => {
   const [posts, setPosts] = useState([]);
@@ -299,24 +297,10 @@ const MyPost = () => {
         {/* Iterate through posts and render each one */}
         {posts.length > 0 ? (
           posts.map((post, index) => (
-            <div className="post" key={index}>
+            <div className="post grid grid-cols-1" key={index}>
               {/* Display post content */}
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "6px",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "6px",
-                    justifyContent: "left",
-                  }}
-                >
+              <div className=" grid grid-cols-2">
+                <div className=" grid grid-cols-2">
                   <div className="avatar placeholder">
                     <div className=" text-neutral-content rounded-full w-12">
                       <img
@@ -412,7 +396,7 @@ const MyPost = () => {
                 </div>
               </div>
 
-              <div className="post-content">
+              <div className=" grid grid-cols-1">
                 <p className="text-left">{post.Email}</p>
                 <p className="text-left">{post.Contact}</p>
                 <p className="text-left">{post.Location}</p>
@@ -425,12 +409,12 @@ const MyPost = () => {
                 )}
               </div>
 
-              <div className="reactions-comments">
+              <div className="grid grid-cols-2 items-center">
                 {/* Comment input field */}
                 <div className="comment-input">
-                  <input
+                  <textarea
                     type="text"
-                    className="mt-2"
+                    className="mt-2 textarea textarea-bordered  w-full max-w-xs"
                     placeholder="Write a comment..."
                     value={commentText[post.post_Id] || ""}
                     onChange={(e) => handleCommentChange(post.post_Id, e)}
@@ -481,7 +465,10 @@ const MyPost = () => {
                   😠 {localReactions.angry}
                 </span>
               </div> */}
-                <button onClick={() => handleCommentSubmit(post.post_Id)}>
+                <button
+                  className=" btn"
+                  onClick={() => handleCommentSubmit(post.post_Id)}
+                >
                   Post
                 </button>
               </div>
@@ -787,9 +774,9 @@ const MyPost = () => {
             <div className="reactions-comments">
               {/* Comment input field */}
               <div className="comment-input">
-                <input
+                <textarea
                   type="text"
-                  className="mt-2"
+                  className="mt-2 textarea textarea-bordered w-full max-w-xs"
                   placeholder="Write a comment..."
                   value={commentText[posts.post_Id] || ""}
                   onChange={(e) => handleCommentChange(posts.post_Id, e)}

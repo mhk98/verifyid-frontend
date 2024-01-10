@@ -313,9 +313,9 @@ const PostDisplay = () => {
 
   console.log("searchText", searchText);
   return (
-    <div className="grid max-w-2xl grid-cols-1 p-4 mx-auto my-12 border post-display">
-      <div className="grid items-center mx-auto mb-8 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2">
-        <h2 className="text-xl font-bold ">Posts</h2>
+    <div className=" my-12 grid grid-cols-1  max-w-2xl mx-auto border p-4">
+      <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 items-center mb-8 mx-auto">
+        <h2 className=" text-xl font-bold ">Posts</h2>
         <div className="form-control">
           <input
             onChange={handleSearchChange}
@@ -329,22 +329,15 @@ const PostDisplay = () => {
       <div className="max-w-xl mx-auto">
         {searchResult.length ? (
           searchResult.map((post) => (
-            <div className="post" key={post.post_Id}>
+            <div className="post grid grid-cols-1" key={post.post_Id}>
               {/* Display post content */}
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "6px",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div className="post-header">
+              <div className="grid grid-cols-2 my-6">
+                <div className="grid grid-cols-2">
                   <div className="avatar placeholder">
                     <div className="w-12 rounded-full text-neutral-content">
                       <img
                         alt="Tailwind CSS Navbar component"
-                        src={`https://verifyid-backend.onrender.com/${post.Image}`}
+                        src={`https://verifyid-backend.onrender.com/${post.image}`}
                       />
                     </div>
                   </div>
