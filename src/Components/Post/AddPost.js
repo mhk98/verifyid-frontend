@@ -59,7 +59,7 @@ const AddPost = () => {
         <div className="form-group">
           <label htmlFor="username">Name</label>
           <input
-            className="border form-input"
+            className="border form-input same-size-input"
             type="text"
             name="Name"
             id="username"
@@ -70,7 +70,7 @@ const AddPost = () => {
         <div className="form-group">
           <label htmlFor="email">Conact No</label>
           <input
-            className="border form-input"
+            className="border form-input same-size-input"
             type="text"
             name="Contact"
             id="contact"
@@ -81,7 +81,7 @@ const AddPost = () => {
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
-            className="border form-input"
+            className="border form-input same-size-input"
             type="email"
             name="Email"
             id="email"
@@ -91,7 +91,7 @@ const AddPost = () => {
         </div>
 
         <select
-          className="w-full max-w-xs select select-bordered"
+          className="w-full max-w-xs select select-bordered same-size-input"
           onChange={(e) => setStatus(e.target.value)}
           style={{
             outline: "none",
@@ -106,7 +106,7 @@ const AddPost = () => {
           <option>Lost</option>
         </select>
         <select
-          className="w-full max-w-xs select select-bordered"
+          className="w-full max-w-xs select select-bordered same-size-input"
           onChange={(e) => setIdentification(e.target.value)}
           style={{
             outline: "none",
@@ -124,7 +124,7 @@ const AddPost = () => {
         <div className="form-group">
           <label htmlFor="password">ID Number</label>
           <input
-            className="border form-input"
+            className="border form-input same-size-input"
             type="text"
             name="idNumber"
             id="idNumber"
@@ -135,7 +135,7 @@ const AddPost = () => {
         <div className="form-group">
           <label htmlFor="password">Location</label>
           <input
-            className="border form-input"
+            className="border form-input same-size-input"
             type="text"
             name="location"
             id="location"
@@ -146,6 +146,7 @@ const AddPost = () => {
         <div className="form-group">
           <label htmlFor="password">Description</label>
           <textarea
+            className="border form-input same-size-input"
             style={{ outline: "none", border: "1px solid black" }}
             name="description"
             id=""
@@ -157,7 +158,7 @@ const AddPost = () => {
         <div className="form-group">
           <label htmlFor="password">Image</label>
           <input
-            className="border form-input"
+            className="border form-input same-size-input"
             type="file"
             name="image"
             id="image"

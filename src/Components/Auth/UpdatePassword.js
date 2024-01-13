@@ -1,15 +1,15 @@
 import axios from "axios";
-import { useState } from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
-import "./Auth.css";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const UpdatePassword = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     Email: "",
     Password: "",
   });
+  const userId = localStorage.getItem("userId");
 
   const handleChange = (e) => {
     setFormData({
@@ -24,19 +24,14 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "https://verifyid-backend.onrender.com/api/v1/user/login",
+      const response = await axios.patch(
+        `https://verifyid-backend.onrender.com/api/v1/user/`,
         formData
       );
 
       if (response.data.status === "Success") {
         navigate("/");
-        toast.success("Successfully Logged In");
-        localStorage.setItem("token", response.data.data.accessToken);
-        localStorage.setItem("name", response.data.data.user.Name);
-        localStorage.setItem("role", response.data.data.user.role);
-        localStorage.setItem("image", response.data.data.user.Image);
-        localStorage.setItem("userId", response.data.data.user.User_ID);
+        toast.success("Successfully Update Password");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -46,7 +41,7 @@ const Login = () => {
 
   return (
     <div className="mt-20 login-container">
-      <h3 className="text-xl bold">Login</h3>
+      <h3 className="text-xl bold ">Forgot Password</h3>
       <form onSubmit={handleSubmit} className="register-form">
         <div className="form-group">
           <label className="text-left " htmlFor="email">
@@ -64,7 +59,7 @@ const Login = () => {
         </div>
         <div className="form-group">
           <label className="text-left " htmlFor="password">
-            Password
+            New Password
           </label>
           <input
             className="border form-input"
@@ -76,31 +71,18 @@ const Login = () => {
             required
           />
         </div>
-        <div>
-          <Link to="/forgot-password" className="text-left">
-            Forgot Password
-          </Link>
-        </div>
+
         <button
           type="submit"
           variant="primary"
           className="p-2 text-white bg-primary"
           style={{ width: "100px" }}
         >
-          Login
+          Submit
         </button>
       </form>
-      <p className="mt-2">
-        <span>Don't have account?</span>
-        <span>
-          <Link to="/register" className="text-primary">
-            {" "}
-            Sign Up
-          </Link>
-        </span>
-      </p>
     </div>
   );
 };
 
-export default Login;
+export default UpdatePassword;

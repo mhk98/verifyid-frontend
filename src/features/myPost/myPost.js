@@ -41,7 +41,7 @@ export const myPostApi = createApi({
       invalidatesTags: ["myPosts"],
     }),
 
-    getAllmyPost: build.query({
+    getAllMyPost: build.query({
       query: (id) => ({
         url: `/mypost/${id}`,
       }),
@@ -53,4 +53,4 @@ export const myPostApi = createApi({
   }),
 });
 
-export const { useGetAllmyPostQuery } = myPostApi;
+export const { useGetAllMyPostQuery } = myPostApi;

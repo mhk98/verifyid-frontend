@@ -2,14 +2,14 @@ import React from "react";
 import { Link, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
+  const Role = localStorage.getItem("role");
+
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="flex flex-col items-center justify-center drawer-content">
         {/* Page content here */}
-        {/* <h2 className="text-3xl font-bold text-black-500">
-          Welcome to your Dashboard
-        </h2> */}
+
         <Outlet></Outlet>
         <label
           htmlFor="my-drawer-2"
@@ -26,8 +26,14 @@ const Dashboard = () => {
         ></label>
         <ul className="min-h-full p-4 menu w-80 bg-base-200 text-base-content">
           {/* Sidebar content here */}
+
+          {/* {Role === "admin" && ( */}
           <li>
-            <Link to="/">All Users</Link>
+            <Link to="/dashboard/users">All Users</Link>
+          </li>
+          {/* )} */}
+          <li>
+            <Link to="/dashboard/posts">Posts</Link>
           </li>
         </ul>
       </div>

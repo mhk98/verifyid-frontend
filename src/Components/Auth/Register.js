@@ -45,7 +45,7 @@ const Register = () => {
 
   return (
     <div className="register-container">
-      <h3>Register</h3>
+      <h3 className="text-xl bold">Register</h3>
       <form onSubmit={handleSubmit} className="register-form">
         <div className="form-group">
           <label htmlFor="username">Username</label>
@@ -92,6 +92,9 @@ const Register = () => {
             required
           />
         </div>
+        <Link to="/forgot-password" className="text-left">
+          Forgot Password
+        </Link>
         <button
           type="submit"
           variant="primary"

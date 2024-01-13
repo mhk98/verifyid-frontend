@@ -55,11 +55,11 @@ const UserNotification = () => {
                 <tr className="bg-base-200" key={notification.Id}>
                   <td>{notification.Id}</td>
                   <td>
-                    Please contact this number
+                    Please contact this admin number
                     <span className="font-bold ms-1">
                       {notification.Contact}
                     </span>{" "}
-                    for getting your documents{" "}
+                    for getting your documents
                     <span className="font-bold">{notification.Name}</span>
                   </td>
                   <td

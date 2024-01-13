@@ -62,8 +62,8 @@ const AdminNotification = () => {
                   <td>{notification.Id}</td>
                   <td>
                     We send a notification
-                    <span className="font-bold">{notification.Name}</span>
-                    for contact this number
+                    <span className="font-bold">{notification.Name}.</span>
+                    This is user number
                     <span className="font-bold ms-1">
                       {notification.Contact}
                     </span>

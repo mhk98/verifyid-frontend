@@ -313,23 +313,24 @@ const PostDisplay = () => {
 
   console.log("searchText", searchText);
   return (
-    <div className=" my-12 grid grid-cols-1  max-w-2xl mx-auto border p-4">
-      <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 items-center mb-8 mx-auto">
-        <h2 className=" text-xl font-bold ">Posts</h2>
-        <div className="form-control">
-          <input
-            onChange={handleSearchChange}
-            type="text"
-            placeholder="Search"
-            className="w-24 input input-bordered md:w-auto"
-          />
+    <div className="post-creation">
+      <div className=" post-display my-12 grid grid-cols-1  max-w-2xl mx-auto border p-4">
+        <div className=" my-12 grid grid-cols-2 ">
+          <h2 className=" text-xl font-bold ">Posts</h2>
+          <div className="form-control">
+            <input
+              onChange={handleSearchChange}
+              type="text"
+              placeholder="Search"
+              className="max-w-xs input input-bordered md:w-auto"
+            />
+          </div>
         </div>
-      </div>
 
-      <div className="max-w-xl mx-auto">
+        {/* <div className="post grid grid-cols-1"> */}
         {searchResult.length ? (
           searchResult.map((post) => (
-            <div className="post grid grid-cols-1" key={post.post_Id}>
+            <div className=" grid grid-cols-1" key={post.post_Id}>
               {/* Display post content */}
               <div className="grid grid-cols-2 my-6">
                 <div className="grid grid-cols-2">
@@ -344,12 +345,14 @@ const PostDisplay = () => {
                   <p>{name}</p>
                 </div>
 
-                <Link
-                  className="p-1 border border-gray-400 rounded details-btn"
-                  to={`/post/${post.post_Id}`}
-                >
-                  Details
-                </Link>
+                {post.Status === "Found" && (
+                  <Link
+                    className="p-1 border border-gray-400 rounded details-btn"
+                    to={`/post/${post.post_Id}`}
+                  >
+                    Details
+                  </Link>
+                )}
               </div>
 
               <div className="post-content">
@@ -358,12 +361,16 @@ const PostDisplay = () => {
                 <p className="text-left">{post.Location}</p>
                 <p className="text-left">{post.Description}</p>
                 <p className="text-left">{post.Identification}</p>
-                {post.Image && (
+                {post.Identification === "NID" ? (
+                  <img src="https://i.ibb.co/51ntN8n/nid.jpg" alt="Post" />
+                ) : post.Identification === "Certificate" ? (
                   <img
-                    src={`https://verifyid-backend.onrender.com/${post.Image}`}
+                    src="https://i.ibb.co/G58WTDf/certificate.jpg"
                     alt="Post"
                   />
-                )}
+                ) : post.Identification === "Licence" ? (
+                  <img src="https://i.ibb.co/jT445Qt/licence.jpg" alt="Post" />
+                ) : null}
               </div>
 
               <div className="reactions-comments">
@@ -635,12 +642,14 @@ const PostDisplay = () => {
                   <p>{name}</p>
                 </div>
 
-                <Link
-                  className="p-1 border border-gray-400 rounded details-btn"
-                  to={`/post/${post.post_Id}`}
-                >
-                  Details
-                </Link>
+                {post.Status === "Found" && (
+                  <Link
+                    className="p-1 border border-gray-400 rounded details-btn"
+                    to={`/post/${post.post_Id}`}
+                  >
+                    Details
+                  </Link>
+                )}
               </div>
 
               <div className="post-content">
@@ -649,20 +658,25 @@ const PostDisplay = () => {
                 <p className="text-left">{post.Location}</p>
                 <p className="text-left">{post.Description}</p>
                 <p className="text-left">{post.Identification}</p>
-                {post.Image && (
+
+                {post.Identification === "NID" ? (
+                  <img src="https://i.ibb.co/51ntN8n/nid.jpg" alt="Post" />
+                ) : post.Identification === "Certificate" ? (
                   <img
-                    src={`https://verifyid-backend.onrender.com/${post.Image}`}
+                    src="https://i.ibb.co/G58WTDf/certificate.jpg"
                     alt="Post"
                   />
-                )}
+                ) : post.Identification === "Licence" ? (
+                  <img src="https://i.ibb.co/jT445Qt/licence.jpg" alt="Post" />
+                ) : null}
               </div>
 
-              <div className="reactions-comments">
+              <div className="grid grid-cols-2 items-center">
                 {/* Comment input field */}
                 <div className="comment-input">
-                  <input
+                  <textarea
                     type="text"
-                    className="mt-2"
+                    className="mt-2 textarea textarea-bordered  w-full max-w-xs"
                     placeholder="Write a comment..."
                     value={commentText[post.post_Id] || ""}
                     onChange={(e) => handleCommentChange(post.post_Id, e)}
@@ -690,36 +704,31 @@ const PostDisplay = () => {
                 {/* <div className="reaction-container">
                 <span
                   onClick={() => handleLocalReaction(post.post_Id, "like")}
-                  className="bg-white reaction-btn"
+                  className="reaction-btn bg-white"
                 >
                   👍 {localReactions.like}
                 </span>
                 <span
                   onClick={() => handleLocalReaction(post.post_Id, "love")}
-                  className="bg-white reaction-btn"
+                  className="reaction-btn bg-white"
                 >
                   ❤️ {localReactions.love}
                 </span>
                 <span
                   onClick={() => handleLocalReaction(post.post_Id, "laugh")}
-                  className="bg-white reaction-btn"
+                  className="reaction-btn bg-white"
                 >
                   😆 {localReactions.laugh}
                 </span>
                 <span
                   onClick={() => handleLocalReaction(post.post_Id, "angry")}
-                  className="bg-white reaction-btn"
+                  className="reaction-btn bg-white"
                 >
                   😠 {localReactions.angry}
                 </span>
               </div> */}
                 <button
-                  style={{
-                    border: "1px solid #A8A8A8",
-                    backgroundColor: "white",
-                    color: "black",
-                    borderRadius: "10px",
-                  }}
+                  className=" btn"
                   onClick={() => handleCommentSubmit(post.post_Id)}
                 >
                   Post
@@ -905,6 +914,7 @@ const PostDisplay = () => {
         ) : (
           <h3 className="text-xl text-center">No post found</h3>
         )}
+        {/* </div> */}
       </div>
     </div>
   );

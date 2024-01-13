@@ -28,7 +28,7 @@ export const userNotificationApi = createApi({
     editUserNotificationData: build.mutation({
       query: ({ id, data }) => ({
         url: `/userNotification/${id}`,
-        method: "PUT",
+        method: "PATCH",
         body: data,
       }),
       invalidatesTags: ["userNotifications"],

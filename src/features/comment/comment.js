@@ -28,7 +28,7 @@ export const commentApi = createApi({
     editComment: build.mutation({
       query: ({ content, postId, commentId }) => ({
         url: `/comment/${postId}/${commentId}`,
-        method: "PUT",
+        method: "PATCH",
         body: JSON.stringify({ content }),
         headers: {
           "Content-Type": "application/json",

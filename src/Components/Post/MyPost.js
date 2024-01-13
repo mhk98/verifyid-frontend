@@ -7,7 +7,7 @@ import {
   useEditCommentMutation,
   useGetAllCommentQuery,
 } from "../../features/comment/comment";
-import { useGetAllmyPostQuery } from "../../features/myPost/myPost";
+import { useGetAllMyPostQuery } from "../../features/myPost/myPost";
 import {
   useDeletePostMutation,
   useEditPostDataMutation,
@@ -82,7 +82,7 @@ const MyPost = () => {
     };
     setCommentText(updatedCommentText);
   };
-  const { data, isLoading, isError, error } = useGetAllmyPostQuery(userId);
+  const { data, isLoading, isError, error } = useGetAllMyPostQuery(userId);
 
   console.log("Posts", posts);
 
@@ -401,12 +401,16 @@ const MyPost = () => {
                 <p className="text-left">{post.Contact}</p>
                 <p className="text-left">{post.Location}</p>
                 <p className="text-left">{post.Description}</p>
-                {post.Image && (
+                {post.Identification === "NID" ? (
+                  <img src="https://i.ibb.co/51ntN8n/nid.jpg" alt="Post" />
+                ) : post.Identification === "Certificate" ? (
                   <img
-                    src={`https://verifyid-backend.onrender.com/${post.Image}`}
+                    src="https://i.ibb.co/G58WTDf/certificate.jpg"
                     alt="Post"
                   />
-                )}
+                ) : post.Identification === "Licence" ? (
+                  <img src="https://i.ibb.co/jT445Qt/licence.jpg" alt="Post" />
+                ) : null}
               </div>
 
               <div className="grid grid-cols-2 items-center">

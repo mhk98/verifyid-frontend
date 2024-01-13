@@ -28,7 +28,7 @@ export const adminNotificationApi = createApi({
     editAdminNotificationData: build.mutation({
       query: ({ id, data }) => ({
         url: `/adminNotification/${id}`,
-        method: "PUT",
+        method: "PATCH",
         body: data,
       }),
       invalidatesTags: ["adminNotifications"],

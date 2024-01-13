@@ -7,7 +7,7 @@ export const postApi = createApi({
     // baseUrl: "https://createabit-backend.onrender.com/api/v1/",
   }),
 
-  tagTypes: ["posts"], // Define the tag type
+  tagTypes: ["post"], // Define the tag type
   endpoints: (build) => ({
     createPost: build.mutation({
       query: ({ id, data }) => ({
@@ -15,7 +15,7 @@ export const postApi = createApi({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["posts"],
+      invalidatesTags: ["post"],
     }),
 
     deletePost: build.mutation({
@@ -23,28 +23,29 @@ export const postApi = createApi({
         url: `/post/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["posts"],
+      invalidatesTags: ["post"],
     }),
     editPostData: build.mutation({
       query: ({ id, data }) => ({
         url: `/post/${id}`,
-        method: "PUT",
+        method: "PATCH",
         body: data,
       }),
-      invalidatesTags: ["posts"],
+      invalidatesTags: ["post"],
     }),
 
     getSinglePost: build.query({
       query: (id) => ({
         url: `/post/${id}`,
       }),
+      invalidatesTags: ["post"],
     }),
 
     getAllPost: build.query({
       query: () => ({
         url: "/post",
       }),
-      invalidatesTags: ["posts"],
+      providesTags: ["post"],
 
       refetchOnMountOrArgChange: true,
       pollingInterval: 1000,

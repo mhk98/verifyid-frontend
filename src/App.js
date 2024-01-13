@@ -16,6 +16,9 @@ import Users from "./Components/Dashboard/Users";
 import AdminNotification from "./Components/Notification/AdminNotification";
 import UserNotification from "./Components/Notification/UserNotification";
 
+import Status from "./Components/Dashboard/Status";
+import UpdatePassword from "./Components/Auth/UpdatePassword";
+
 const App = () => {
   return (
     <div>
@@ -55,6 +58,7 @@ const App = () => {
             }
           />
           <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<UpdatePassword />} />
           <Route path="/register" element={<Register />} />
           <Route
             path="/admin-notification"
@@ -86,6 +90,14 @@ const App = () => {
               element={
                 <RequireAuth>
                   <Users></Users>
+                </RequireAuth>
+              }
+            ></Route>
+            <Route
+              path="posts"
+              element={
+                <RequireAuth>
+                  <Status></Status>
                 </RequireAuth>
               }
             ></Route>

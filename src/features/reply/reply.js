@@ -28,7 +28,7 @@ export const replyApi = createApi({
     editReply: build.mutation({
       query: ({ content, postId, commentId, replyId }) => ({
         url: `/reply/${postId}/${commentId}/${replyId}`,
-        method: "PUT",
+        method: "PATCH",
         body: JSON.stringify({ content }),
         headers: {
           "Content-Type": "application/json",
