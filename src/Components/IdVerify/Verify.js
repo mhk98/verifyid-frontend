@@ -64,12 +64,31 @@ const Verify = () => {
         >
           {/* <form onSubmit={handleNotification}> */}
           <div className="mx-auto card-body">
-            <h2 className="card-title">Name: {post.Name}</h2>
-            <p>Email: {post.Email}</p>
-            <p>Contact: {post.Contact}</p>
-            <p>Location: {post.Location}</p>
+            <h2 className="card-title">
+              <span className="font-bold">Name: </span>
+              {post.Name}
+            </h2>
+            <p className="text-left">
+              <span className="font-bold">Status: </span>
 
-            <p>Id Number: {post.IdNumber.substring(6)}</p>
+              {post.Status}
+            </p>
+            <p className="text-left">
+              <span className="font-bold">Type: </span>
+
+              {post.Identification}
+            </p>
+
+            <p>
+              <span className="font-bold">Location: </span>
+              {post.Location}
+            </p>
+
+            <p>
+              <span className="font-bold">Id: </span>
+              {post.IdNumber.slice(-6)} (Last 6 digits)
+            </p>
+
             <div className="form-group">
               <label htmlFor="username">Please match your Id number</label>
               <input

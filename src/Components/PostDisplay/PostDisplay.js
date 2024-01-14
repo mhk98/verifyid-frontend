@@ -653,11 +653,37 @@ const PostDisplay = () => {
               </div>
 
               <div className="post-content">
-                <p className="text-left">{post.Email}</p>
-                <p className="text-left">{post.Contact}</p>
-                <p className="text-left">{post.Location}</p>
-                <p className="text-left">{post.Description}</p>
-                <p className="text-left">{post.Identification}</p>
+                <p className="text-left">
+                  <span className="font-bold">Name: </span>
+                  {post.Name}
+                </p>
+
+                <p className="text-left">
+                  <span className="font-bold">Status: </span>
+
+                  {post.Status}
+                </p>
+                <p className="text-left">
+                  <span className="font-bold">Type: </span>
+
+                  {post.Identification}
+                </p>
+                <p className="text-left">
+                  <span className="font-bold">Last 6 digit: </span>
+
+                  {post.IdNumber.slice(-6)}
+                </p>
+
+                <p className="text-left">
+                  {" "}
+                  <span className="font-bold">Location: </span>
+                  {post.Location}
+                </p>
+                <p className="text-left">
+                  {" "}
+                  <span className="font-bold">Description: </span>
+                  {post.Description}
+                </p>
 
                 {post.Identification === "NID" ? (
                   <img src="https://i.ibb.co/51ntN8n/nid.jpg" alt="Post" />

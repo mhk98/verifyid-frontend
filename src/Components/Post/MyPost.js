@@ -11,6 +11,7 @@ import { useGetAllMyPostQuery } from "../../features/myPost/myPost";
 import {
   useDeletePostMutation,
   useEditPostDataMutation,
+  useGetSinglePostQuery,
 } from "../../features/post/post";
 import {
   useCreateReplyMutation,
@@ -82,7 +83,7 @@ const MyPost = () => {
     };
     setCommentText(updatedCommentText);
   };
-  const { data, isLoading, isError, error } = useGetAllMyPostQuery(userId);
+  const { data, isLoading, isError, error } = useGetSinglePostQuery(userId);
 
   console.log("Posts", posts);
 

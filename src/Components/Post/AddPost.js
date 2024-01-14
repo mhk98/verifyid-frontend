@@ -43,8 +43,9 @@ const AddPost = () => {
     try {
       const res = await createPost({ id: userId, data: formData });
 
-      if (res) {
+      if (res.data.status === "Success") {
         toast.success("Successfully created post");
+        navigate("/");
       }
     } catch (error) {
       console.error("Error:", error);

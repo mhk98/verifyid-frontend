@@ -5,33 +5,25 @@ import { useNavigate } from "react-router-dom";
 
 const UpdatePassword = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    Email: "",
-    Password: "",
-  });
-  const userId = localStorage.getItem("userId");
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  console.log("formData", formData);
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const data = {
+      Password: password,
+    };
 
     try {
       const response = await axios.patch(
-        `https://verifyid-backend.onrender.com/api/v1/user/`,
-        formData
+        `https://verifyid-backend.onrender.com/api/v1/user/${email}`,
+        data
       );
 
       if (response.data.status === "Success") {
-        navigate("/");
         toast.success("Successfully Update Password");
+        navigate("/login");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -49,11 +41,10 @@ const UpdatePassword = () => {
           </label>
           <input
             className="border form-input"
+            onChange={(e) => setEmail(e.target.value)}
             type="email"
-            name="Email"
+            name="email"
             id="email"
-            value={formData.Email}
-            onChange={handleChange}
             required
           />
         </div>
@@ -63,12 +54,10 @@ const UpdatePassword = () => {
           </label>
           <input
             className="border form-input"
+            onChange={(e) => setPassword(e.target.value)}
             type="password"
-            name="Password"
+            name="password"
             id="password"
-            value={formData.Password}
-            onChange={handleChange}
-            required
           />
         </div>
 

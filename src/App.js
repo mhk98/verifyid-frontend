@@ -18,6 +18,12 @@ import UserNotification from "./Components/Notification/UserNotification";
 
 import Status from "./Components/Dashboard/Status";
 import UpdatePassword from "./Components/Auth/UpdatePassword";
+import Contact from "./Components/Contact/Contact";
+import Blog from "./Components/Blog/Blog";
+import Footer from "./Components/Footer";
+import NidDetails from "./Components/Blog/NidDetails";
+import CertificateDetails from "./Components/Blog/CertificateDetails";
+import Licence from "./Components/Blog/Licence";
 
 const App = () => {
   return (
@@ -57,6 +63,12 @@ const App = () => {
               </RequireAuth>
             }
           />
+
+          <Route path="/nid-details" element={<NidDetails />} />
+          <Route path="/certificate-details" element={<CertificateDetails />} />
+          <Route path="/licence-details" element={<Licence />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<UpdatePassword />} />
           <Route path="/register" element={<Register />} />
@@ -104,6 +116,7 @@ const App = () => {
           </Route>
         </Routes>
       </Provider>
+      <Footer />
       <Toaster />
     </div>
   );
