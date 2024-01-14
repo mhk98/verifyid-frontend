@@ -15,6 +15,7 @@ const AddPost = () => {
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("");
+  const [ownerName, setOwnerName] = useState("");
 
   const userId = localStorage.getItem("userId");
 
@@ -37,6 +38,7 @@ const AddPost = () => {
     formData.append("Identification", identification);
     formData.append("IdNumber", idNumber);
     formData.append("Location", location);
+    formData.append("Owner_Name", ownerName);
     formData.append("Description", description);
     formData.append("Status", status);
     console.log("formData", formData);
@@ -69,7 +71,7 @@ const AddPost = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="email">Conact No</label>
+          <label htmlFor="email">Contact No</label>
           <input
             className="border form-input same-size-input"
             type="text"
@@ -130,6 +132,17 @@ const AddPost = () => {
             name="idNumber"
             id="idNumber"
             onChange={(e) => setIdNumber(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Owner Name</label>
+          <input
+            className="border form-input same-size-input"
+            type="text"
+            name="Owner_Name"
+            id="Owner_Name"
+            onChange={(e) => setOwnerName(e.target.value)}
             required
           />
         </div>

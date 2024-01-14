@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useDeletePostMutation } from "../../features/post/post";
+import {
+  useDeletePostMutation,
+  useGetSinglePostQuery,
+} from "../../features/post/post";
 import toast from "react-hot-toast";
 import { useGetAllMyPostQuery } from "../../features/myPost/myPost";
 
@@ -13,7 +16,7 @@ const Status = () => {
   const userId = localStorage.getItem("userId");
 
   const [status, setStatus] = useState([]);
-  const { data, isLoading, isError, error } = useGetAllMyPostQuery(userId);
+  const { data, isLoading, isError, error } = useGetSinglePostQuery(userId);
 
   useEffect(() => {
     if (isError) {
@@ -22,12 +25,13 @@ const Status = () => {
       setStatus(data.data);
     }
   }, [data, isLoading, isError, error]);
-  const [deleteUser] = useDeletePostMutation();
+  const [deletePost] = useDeletePostMutation();
 
   const handleDelete = async (id) => {
-    const res = await deleteUser(id);
+    console.log("handleId", id);
+    const res = await deletePost(id);
     if (res) {
-      toast.success("Successfully delete user");
+      toast.success("Successfully delete post");
     }
   };
 
@@ -49,20 +53,20 @@ const Status = () => {
           ) : status ? (
             status.map((post) => (
               <tr className="bg-base-200" key={post.post_ID}>
-                <th>{post.post_ID}</th>
+                <th>{post.post_Id}</th>
 
                 <td>
                   <img
                     className="w-12 h-12"
-                    src={`https://verifyid-backend.onrender.com${post.Image}`}
+                    src={`https://verifyid-backend.onrender.com/${post.Image}`}
                     alt=""
                   />
                 </td>
-                <td>{post.Identification}</td>
+                <td>{post.Identifiction}</td>
                 <td>
                   <button
                     className="bg-white"
-                    onClick={() => handleDelete(post.post_ID)}
+                    onClick={() => handleDelete(post.post_Id)}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

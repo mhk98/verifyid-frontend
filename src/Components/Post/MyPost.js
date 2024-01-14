@@ -306,7 +306,7 @@ const MyPost = () => {
                     <div className=" text-neutral-content rounded-full w-12">
                       <img
                         alt="Tailwind CSS Navbar component"
-                        src={`https://verifyid-backend.onrender.com/${post.Image}`}
+                        src={`http://localhost:5000/${post.Image}`}
                       />
                     </div>
                   </div>
@@ -497,7 +497,7 @@ const MyPost = () => {
                             <div className="w-12  text-neutral-content">
                               <img
                                 alt=""
-                                src={`https://verifyid-backend.onrender.com/${image}`}
+                                src={`http://localhost:5000/${image}`}
                               />
                             </div>
                           </div>
@@ -592,7 +592,7 @@ const MyPost = () => {
                                     <div className="w-12  text-neutral-content">
                                       <img
                                         alt=""
-                                        src={`https://verifyid-backend.onrender.com/${image}`}
+                                        src={`http://localhost:5000/${image}`}
                                       />
                                     </div>
                                   </div>
@@ -677,7 +677,7 @@ const MyPost = () => {
                   <div className=" text-neutral-content rounded-full w-12">
                     <img
                       alt="Tailwind CSS Navbar component"
-                      src={`https://verifyid-backend.onrender.com/${image}`}
+                      src={`http://localhost:5000/${image}`}
                     />
                   </div>
                 </div>
@@ -770,10 +770,7 @@ const MyPost = () => {
 
             <p className="text-left">{posts.content}</p>
             {posts.Image && (
-              <img
-                src={`https://verifyid-backend.onrender.com/${posts.Image}`}
-                alt="Post"
-              />
+              <img src={`http://localhost:5000/${posts.Image}`} alt="Post" />
             )}
 
             <div className="reactions-comments">
@@ -856,7 +853,7 @@ const MyPost = () => {
                           <div className="w-12  text-neutral-content">
                             <img
                               alt=""
-                              src={`https://verifyid-backend.onrender.com/${image}`}
+                              src={`http://localhost:5000/${image}`}
                             />
                           </div>
                         </div>
@@ -948,7 +945,7 @@ const MyPost = () => {
                                   <div className="w-12  text-neutral-content">
                                     <img
                                       alt=""
-                                      src={`https://verifyid-backend.onrender.com/${image}`}
+                                      src={`http://localhost:5000/${image}`}
                                     />
                                   </div>
                                 </div>

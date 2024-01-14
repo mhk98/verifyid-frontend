@@ -338,7 +338,7 @@ const PostDisplay = () => {
                     <div className="w-12 rounded-full text-neutral-content">
                       <img
                         alt="Tailwind CSS Navbar component"
-                        src={`https://verifyid-backend.onrender.com/${post.Image}`}
+                        src={`http://localhost:5000/${post.Image}`}
                       />
                     </div>
                   </div>
@@ -461,7 +461,7 @@ const PostDisplay = () => {
                             <div className="w-12 text-neutral-content">
                               <img
                                 alt=""
-                                src={`https://verifyid-backend.onrender.com/${post.Image}`}
+                                src={`http://localhost:5000/${post.Image}`}
                               />
                             </div>
                           </div>
@@ -556,7 +556,7 @@ const PostDisplay = () => {
                                     <div className="w-12 text-neutral-content">
                                       <img
                                         alt=""
-                                        src={`https://verifyid-backend.onrender.com/${image}`}
+                                        src={`http://localhost:5000/${image}`}
                                       />
                                     </div>
                                   </div>
@@ -635,7 +635,7 @@ const PostDisplay = () => {
                     <div className="w-12 rounded-full text-neutral-content">
                       <img
                         alt="Tailwind CSS Navbar component"
-                        src={`https://verifyid-backend.onrender.com/${post.Image}`}
+                        src={`http://localhost:5000/${post.Image}`}
                       />
                     </div>
                   </div>
@@ -674,6 +674,11 @@ const PostDisplay = () => {
                   {post.IdNumber.slice(-6)}
                 </p>
 
+                <p className="text-left">
+                  {" "}
+                  <span className="font-bold">Owner Name: </span>
+                  {post.Owner_Name}
+                </p>
                 <p className="text-left">
                   {" "}
                   <span className="font-bold">Location: </span>
@@ -780,7 +785,7 @@ const PostDisplay = () => {
                             <div className="w-12 text-neutral-content">
                               <img
                                 alt=""
-                                src={`https://verifyid-backend.onrender.com/${post.Image}`}
+                                src={`http://localhost:5000/${post.Image}`}
                               />
                             </div>
                           </div>
@@ -875,7 +880,7 @@ const PostDisplay = () => {
                                     <div className="w-12 text-neutral-content">
                                       <img
                                         alt=""
-                                        src={`https://verifyid-backend.onrender.com/${image}`}
+                                        src={`http://localhost:5000/${image}`}
                                       />
                                     </div>
                                   </div>
