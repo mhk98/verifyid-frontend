@@ -29,7 +29,7 @@ const UserNotification = () => {
     }
   };
   return (
-    <div>
+    <div style={{ height: "60vh" }}>
       {isLoading ? (
         <h3>Loading...</h3>
       ) : userNotification ? (
@@ -40,13 +40,18 @@ const UserNotification = () => {
         //   </h3>
         // ))
 
-        <div className="overflow-x-auto flex flex-1 justify-center mt-4">
+        <div
+          className="overflow-x-auto flex flex-1 justify-center mt-4"
+          style={{ marginTop: "100px" }}
+        >
           <table className="table">
             {/* head */}
             <thead>
               <tr className="border">
                 <th className="font-bold text-black">No</th>
                 <th className="font-bold text-black">Message</th>
+                <th className="font-bold text-black">Action</th>
+
                 {/* <th className="font-bold text-black">Action</th> */}
               </tr>
             </thead>
@@ -60,7 +65,7 @@ const UserNotification = () => {
                       {notification.Contact}
                     </span>{" "}
                     for getting your documents
-                    <span className="font-bold">{notification.Name}</span>
+                    <span className="font-bold"> {notification.Name}</span>
                   </td>
                   <td
                     className="cursor-pointer"

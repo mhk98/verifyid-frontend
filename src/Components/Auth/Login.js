@@ -25,7 +25,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/user/login",
+        "https://verifyid-backend.onrender.com/api/v1/user/login",
         formData
       );
 
@@ -34,11 +34,13 @@ const Login = () => {
         toast.success("Successfully Logged In");
         localStorage.setItem("token", response.data.data.accessToken);
         localStorage.setItem("name", response.data.data.user.Name);
+        localStorage.setItem("email", response.data.data.user.Email);
         localStorage.setItem("role", response.data.data.user.role);
         localStorage.setItem("image", response.data.data.user.Image);
         localStorage.setItem("userId", response.data.data.user.User_ID);
       }
     } catch (error) {
+      toast.error(error.message);
       console.error("Error:", error);
       // Handle the error, e.g., show an error message to the user.
     }

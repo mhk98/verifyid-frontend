@@ -6,6 +6,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, useNavigate } from "react-router-dom";
 import { useGetAllAdminNotificationQuery } from "../../features/adminNotification/adminNotification";
 import { useGetAllUserNotificationQuery } from "../../features/userNotification/userNotification";
+import logo from "../../image/logo.png";
 const Header = () => {
   const token = localStorage.getItem("token");
   const image = localStorage.getItem("image");
@@ -18,7 +19,6 @@ const Header = () => {
     localStorage.removeItem("token");
     localStorage.clear();
     navigate("/login");
-    window.location.reload();
   };
 
   function classNames(...classes) {
@@ -42,7 +42,7 @@ const Header = () => {
     isLoading: isLoading1,
     isError: isError1,
     error: error1,
-  } = useGetAllAdminNotificationQuery(Role);
+  } = useGetAllAdminNotificationQuery();
   const [adminNotification, setAdminNotification] = useState("");
 
   useEffect(() => {
@@ -66,7 +66,7 @@ const Header = () => {
     //       <div className="w-10 rounded-full">
     //         <img
     //           alt="Tailwind CSS Navbar component"
-    //           src={`http://localhost:5000/${image}`}
+    //           src={`https://verifyid-backend.onrender.com/${image}`}
     //         />
     //       </div>
     //     </div>
@@ -91,225 +91,223 @@ const Header = () => {
     //   </div>
     // </div>
 
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-gray-800 ">
       {({ open }) => (
-        <>
-          <div className="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div className="relative flex items-center justify-between h-16">
-              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                {/* Mobile menu button*/}
-                <Disclosure.Button className="relative inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                  <span className="absolute -inset-0.5" />
-                  <span className="sr-only">Open main menu</span>
-                  {open ? (
-                    <XMarkIcon className="block w-6 h-6" aria-hidden="true" />
+        <div>
+          <div className="fixed top-0 left-0 right-0 z-50 bg-gray-800">
+            <div className=" px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
+              <div className="relative flex items-center justify-between h-16">
+                <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                  {/* Mobile menu button*/}
+                  <Disclosure.Button className="relative inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                    <span className="absolute -inset-0.5" />
+                    <span className="sr-only">Open main menu</span>
+                    {open ? (
+                      <XMarkIcon className="block w-6 h-6" aria-hidden="true" />
+                    ) : (
+                      <Bars3Icon className="block w-6 h-6" aria-hidden="true" />
+                    )}
+                  </Disclosure.Button>
+                </div>
+                <div className="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
+                  <div className="flex items-center flex-shrink-0">
+                    <img className="w-auto h-8" src={logo} alt="Your Company" />
+                  </div>
+                  <div className="hidden sm:ml-6 sm:block">
+                    <div className="flex space-x-4">
+                      <Link
+                        to="/"
+                        className={classNames(
+                          "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          "rounded-md px-3 py-2 text-sm font-medium"
+                        )}
+                        aria-current={
+                          window.location.pathname === "/" ? "page" : undefined
+                        }
+                      >
+                        Home
+                      </Link>
+
+                      <Link
+                        to="/add-post"
+                        className={classNames(
+                          "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          "rounded-md px-3 py-2 text-sm font-medium"
+                        )}
+                        aria-current={
+                          window.location.pathname === "/add-post"
+                            ? "page"
+                            : undefined
+                        }
+                      >
+                        Add Post
+                      </Link>
+
+                      <Link
+                        to="/my-post"
+                        className={classNames(
+                          "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          "rounded-md px-3 py-2 text-sm font-medium"
+                        )}
+                        aria-current={
+                          window.location.pathname === "/my-post"
+                            ? "page"
+                            : undefined
+                        }
+                      >
+                        My Posts
+                      </Link>
+
+                      <Link
+                        to="/dashboard"
+                        className={classNames(
+                          "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          "rounded-md px-3 py-2 text-sm font-medium"
+                        )}
+                        aria-current={
+                          window.location.pathname === "/dashboard"
+                            ? "page"
+                            : undefined
+                        }
+                      >
+                        Dashboard
+                      </Link>
+                      <Link
+                        to="/contact"
+                        className={classNames(
+                          "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          "rounded-md px-3 py-2 text-sm font-medium"
+                        )}
+                        aria-current={
+                          window.location.pathname === "/dashboard"
+                            ? "page"
+                            : undefined
+                        }
+                      >
+                        Contact
+                      </Link>
+                      <Link
+                        to="/blog"
+                        className={classNames(
+                          "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          "rounded-md px-3 py-2 text-sm font-medium"
+                        )}
+                        aria-current={
+                          window.location.pathname === "/dashboard"
+                            ? "page"
+                            : undefined
+                        }
+                      >
+                        Blog
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                  {Role === "admin" ? (
+                    <Link to="/admin-notification">
+                      <button
+                        type="button"
+                        className="relative p-1 text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      >
+                        <span
+                          className=""
+                          style={{
+                            position: "absolute",
+                            right: "4px",
+                            top: "-7px",
+                          }}
+                        >
+                          {adminNotification.length}
+                        </span>
+                        {/* <span className="sr-only">View notifications</span> */}
+                        <BellIcon className="w-6 h-6" aria-hidden="true" />
+                        <span></span>
+                      </button>
+                    </Link>
                   ) : (
-                    <Bars3Icon className="block w-6 h-6" aria-hidden="true" />
+                    <Link to="/user-notification">
+                      <button
+                        type="button"
+                        className="relative p-1 text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      >
+                        <span
+                          className="text-white"
+                          style={{
+                            position: "absolute",
+                            right: "4px",
+                            top: "-7px",
+                          }}
+                        >
+                          {userNotification.length}
+                        </span>
+                        {/* <span className="sr-only">View notifications</span> */}
+                        <BellIcon
+                          className="w-6 h-6 text-white"
+                          aria-hidden="true"
+                        />
+                        <span></span>
+                      </button>
+                    </Link>
                   )}
-                </Disclosure.Button>
-              </div>
-              <div className="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
-                <div className="flex items-center flex-shrink-0">
-                  <img
-                    className="w-auto h-8"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
-                  />
+
+                  {/* Profile dropdown */}
+                  <Menu as="div" className="relative ml-3">
+                    <div>
+                      <Menu.Button className="relative flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                        <span className="absolute -inset-1.5" />
+                        <span className="sr-only">Open user menu</span>
+                        <img
+                          className="h-8 w-8 rounded-full"
+                          src={`https://verifyid-backend.onrender.com/${image}`}
+                          alt=""
+                        />
+                      </Menu.Button>
+                    </div>
+                    <Transition
+                      as={Fragment}
+                      enter="transition ease-out duration-100"
+                      enterFrom="transform opacity-0 scale-95"
+                      enterTo="transform opacity-100 scale-100"
+                      leave="transition ease-in duration-75"
+                      leaveFrom="transform opacity-100 scale-100"
+                      leaveTo="transform opacity-0 scale-95"
+                    >
+                      <Menu.Items className="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                        {token ? (
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a
+                                href="#"
+                                className={classNames(
+                                  active ? "bg-gray-100" : "",
+                                  "block px-4 py-2 text-sm text-gray-700"
+                                )}
+                                onClick={handleLogout}
+                              >
+                                Sign out
+                              </a>
+                            )}
+                          </Menu.Item>
+                        ) : (
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a
+                                className={classNames(
+                                  active ? "bg-gray-100" : "",
+                                  "block px-4 py-2 text-sm text-gray-700"
+                                )}
+                              >
+                                Sign in
+                              </a>
+                            )}
+                          </Menu.Item>
+                        )}
+                      </Menu.Items>
+                    </Transition>
+                  </Menu>
                 </div>
-                <div className="hidden sm:ml-6 sm:block">
-                  <div className="flex space-x-4">
-                    <Link
-                      to="/"
-                      className={classNames(
-                        "text-gray-300 hover:bg-gray-700 hover:text-white",
-                        "rounded-md px-3 py-2 text-sm font-medium"
-                      )}
-                      aria-current={
-                        window.location.pathname === "/" ? "page" : undefined
-                      }
-                    >
-                      Home
-                    </Link>
-
-                    <Link
-                      to="/add-post"
-                      className={classNames(
-                        "text-gray-300 hover:bg-gray-700 hover:text-white",
-                        "rounded-md px-3 py-2 text-sm font-medium"
-                      )}
-                      aria-current={
-                        window.location.pathname === "/add-post"
-                          ? "page"
-                          : undefined
-                      }
-                    >
-                      Add Post
-                    </Link>
-
-                    <Link
-                      to="/my-post"
-                      className={classNames(
-                        "text-gray-300 hover:bg-gray-700 hover:text-white",
-                        "rounded-md px-3 py-2 text-sm font-medium"
-                      )}
-                      aria-current={
-                        window.location.pathname === "/my-post"
-                          ? "page"
-                          : undefined
-                      }
-                    >
-                      My Posts
-                    </Link>
-
-                    <Link
-                      to="/dashboard"
-                      className={classNames(
-                        "text-gray-300 hover:bg-gray-700 hover:text-white",
-                        "rounded-md px-3 py-2 text-sm font-medium"
-                      )}
-                      aria-current={
-                        window.location.pathname === "/dashboard"
-                          ? "page"
-                          : undefined
-                      }
-                    >
-                      Dashboard
-                    </Link>
-                    <Link
-                      to="/contact"
-                      className={classNames(
-                        "text-gray-300 hover:bg-gray-700 hover:text-white",
-                        "rounded-md px-3 py-2 text-sm font-medium"
-                      )}
-                      aria-current={
-                        window.location.pathname === "/dashboard"
-                          ? "page"
-                          : undefined
-                      }
-                    >
-                      Contact
-                    </Link>
-                    <Link
-                      to="/blog"
-                      className={classNames(
-                        "text-gray-300 hover:bg-gray-700 hover:text-white",
-                        "rounded-md px-3 py-2 text-sm font-medium"
-                      )}
-                      aria-current={
-                        window.location.pathname === "/dashboard"
-                          ? "page"
-                          : undefined
-                      }
-                    >
-                      Blog
-                    </Link>
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                {Role === "admin" ? (
-                  <Link to="/admin-notification">
-                    <button
-                      type="button"
-                      className="relative p-1 text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                    >
-                      <span
-                        className=""
-                        style={{
-                          position: "absolute",
-                          right: "4px",
-                          top: "-7px",
-                        }}
-                      >
-                        {adminNotification.length}
-                      </span>
-                      {/* <span className="sr-only">View notifications</span> */}
-                      <BellIcon className="w-6 h-6" aria-hidden="true" />
-                      <span></span>
-                    </button>
-                  </Link>
-                ) : (
-                  <Link to="/user-notification">
-                    <button
-                      type="button"
-                      className="relative p-1 text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                    >
-                      <span
-                        className="text-white"
-                        style={{
-                          position: "absolute",
-                          right: "4px",
-                          top: "-7px",
-                        }}
-                      >
-                        {userNotification.length}
-                      </span>
-                      {/* <span className="sr-only">View notifications</span> */}
-                      <BellIcon
-                        className="w-6 h-6 text-white"
-                        aria-hidden="true"
-                      />
-                      <span></span>
-                    </button>
-                  </Link>
-                )}
-
-                {/* Profile dropdown */}
-                <Menu as="div" className="relative ml-3">
-                  <div>
-                    <Menu.Button className="relative flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                      <span className="absolute -inset-1.5" />
-                      <span className="sr-only">Open user menu</span>
-                      <img
-                        className="h-8 w-8 rounded-full"
-                        src={`http://localhost:5000/${image}`}
-                        alt=""
-                      />
-                    </Menu.Button>
-                  </div>
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    <Menu.Items className="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      {token ? (
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="#"
-                              className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
-                              )}
-                              onClick={handleLogout}
-                            >
-                              Sign out
-                            </a>
-                          )}
-                        </Menu.Item>
-                      ) : (
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
-                              )}
-                            >
-                              Sign in
-                            </a>
-                          )}
-                        </Menu.Item>
-                      )}
-                    </Menu.Items>
-                  </Transition>
-                </Menu>
               </div>
             </div>
           </div>
@@ -355,25 +353,47 @@ const Header = () => {
                 My Post
               </Link>
 
-              {Role === "admin" && (
-                <Link
-                  to="/dashboard"
-                  className={classNames(
-                    "text-gray-300 hover:bg-gray-700 hover:text-white",
-                    "block rounded-md px-3 py-2 text-base font-medium"
-                  )}
-                  aria-current={
-                    window.location.pathname === "/dashboard"
-                      ? "page"
-                      : undefined
-                  }
-                >
-                  Dashboard
-                </Link>
-              )}
+              <Link
+                to="/dashboard"
+                className={classNames(
+                  "text-gray-300 hover:bg-gray-700 hover:text-white",
+                  "block rounded-md px-3 py-2 text-base font-medium"
+                )}
+                aria-current={
+                  window.location.pathname === "/dashboard" ? "page" : undefined
+                }
+              >
+                Dashboard
+              </Link>
+
+              <Link
+                to="/contact"
+                className={classNames(
+                  "text-gray-300 hover:bg-gray-700 hover:text-white",
+                  "rounded-md px-3 py-2 text-sm font-medium"
+                )}
+                aria-current={
+                  window.location.pathname === "/contact" ? "page" : undefined
+                }
+              >
+                Contact
+              </Link>
+              <br></br>
+              <Link
+                to="/blog"
+                className={classNames(
+                  "text-gray-300 hover:bg-gray-700 hover:text-white",
+                  "rounded-md px-3 py-2 text-sm font-medium"
+                )}
+                aria-current={
+                  window.location.pathname === "/blog" ? "page" : undefined
+                }
+              >
+                Blog
+              </Link>
             </div>
           </Disclosure.Panel>
-        </>
+        </div>
       )}
     </Disclosure>
   );

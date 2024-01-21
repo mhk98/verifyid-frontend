@@ -35,7 +35,7 @@ const AdminNotification = () => {
     }
   };
   return (
-    <div>
+    <div style={{ height: "60vh" }}>
       {isLoading1 ? (
         <h3>Loading...</h3>
       ) : adminNotification ? (
@@ -46,13 +46,17 @@ const AdminNotification = () => {
         //   </h3>
         // ))
 
-        <div className="overflow-x-auto flex flex-1 justify-center mt-4">
+        <div
+          className="overflow-x-auto flex flex-1 justify-center mt-4"
+          style={{ marginTop: "100px" }}
+        >
           <table className="table">
             {/* head */}
             <thead>
               <tr className="border">
                 <th className="font-bold text-black">No</th>
                 <th className="font-bold text-black">Message</th>
+                <th className="font-bold text-black">Action</th>
                 {/* <th className="font-bold text-black">Action</th> */}
               </tr>
             </thead>
@@ -62,12 +66,10 @@ const AdminNotification = () => {
                   <td>{notification.Id}</td>
                   <td>
                     We send a notification
-                    <span className="font-bold">{notification.Name}.</span>
-                    This is user number
-                    <span className="font-bold ms-1">
-                      {notification.Contact}
-                    </span>
-                    to getting his documents
+                    <span className="font-bold"> {notification.Name}.</span>
+                    This is user email
+                    <span className="font-bold ms-1">{notification.Email}</span>
+                    <span className="ms-1">to getting his information</span>
                   </td>
                   <td
                     className="cursor-pointer"

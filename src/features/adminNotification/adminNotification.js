@@ -3,15 +3,15 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const adminNotificationApi = createApi({
   reducerPath: "adminNotificationApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api/v1/",
+    baseUrl: "https://verifyid-backend.onrender.com/api/v1/",
     // baseUrl: "https://createabit-backend.onrender.com/api/v1/",
   }),
 
   tagTypes: ["adminNotifications"], // Define the tag type
   endpoints: (build) => ({
     createAdminNotification: build.mutation({
-      query: ({ id, data }) => ({
-        url: `/adminNotification/${id}`,
+      query: (data) => ({
+        url: "/adminNotification",
         method: "POST",
         body: data,
       }),

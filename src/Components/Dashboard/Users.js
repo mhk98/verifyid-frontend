@@ -89,7 +89,7 @@ const Users = () => {
                       <li>
                         {/* Open the modal using document.getElementById('ID').showModal() method */}
                         <button
-                           onClick={() => {
+                          onClick={() => {
                             setUserId(user.User_ID); // Set the userId when the edit button is clicked
                             document.getElementById("my_modal_5").showModal();
                           }}

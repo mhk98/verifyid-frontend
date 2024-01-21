@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import licence from "../../image/licence.jpg";
 const Blog = () => {
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center my-20">
       <div className="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-4 ">
         <div className="card w-96 bg-base-100 shadow-xl">
           <figure className="px-10 pt-10">
@@ -29,11 +29,7 @@ const Blog = () => {
         </div>
         <div className="card w-96 bg-base-100 shadow-xl">
           <figure className="px-10 pt-10">
-            <img
-              src="https://i.ibb.co/jT445Qt/licence.jpg"
-              alt="Shoes"
-              className="rounded-xl"
-            />
+            <img src={licence} alt="Shoes" className="rounded-xl" />
           </figure>
           <div className="card-body items-center text-center">
             <h2 className="card-title">

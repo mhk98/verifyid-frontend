@@ -24,14 +24,14 @@ const Dashboard = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="min-h-full p-4 menu w-80 bg-base-200 text-base-content">
+        <ul className="min-h-full p-4 menu w-80 bg-base-200 text-base-content py-20">
           {/* Sidebar content here */}
 
-          {/* {Role === "admin" && ( */}
-          <li>
-            <Link to="/dashboard/users">All Users</Link>
-          </li>
-          {/* )} */}
+          {Role === "admin" && (
+            <li>
+              <Link to="/dashboard/users">All Users</Link>
+            </li>
+          )}
           <li>
             <Link to="/dashboard/posts">Posts</Link>
           </li>

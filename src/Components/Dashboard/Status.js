@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   useDeletePostMutation,
+  useGetMyPostQuery,
   useGetSinglePostQuery,
 } from "../../features/post/post";
 import toast from "react-hot-toast";
@@ -16,7 +17,9 @@ const Status = () => {
   const userId = localStorage.getItem("userId");
 
   const [status, setStatus] = useState([]);
-  const { data, isLoading, isError, error } = useGetSinglePostQuery(userId);
+  const { data, isLoading, isError, error } = useGetMyPostQuery(userId);
+
+  console.log("AllPost", status);
 
   useEffect(() => {
     if (isError) {
@@ -32,6 +35,7 @@ const Status = () => {
     const res = await deletePost(id);
     if (res) {
       toast.success("Successfully delete post");
+      window.location.reload();
     }
   };
 
@@ -62,7 +66,7 @@ const Status = () => {
                     alt=""
                   />
                 </td>
-                <td>{post.Identifiction}</td>
+                <td>{post.Identification}</td>
                 <td>
                   <button
                     className="bg-white"

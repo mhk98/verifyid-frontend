@@ -330,316 +330,20 @@ const PostDisplay = () => {
         {/* <div className="post grid grid-cols-1"> */}
         {searchResult.length ? (
           searchResult.map((post) => (
-            <div className=" grid grid-cols-1" key={post.post_Id}>
+            <div className=" grid grid-cols-1 border mb-6" key={post.post_Id}>
               {/* Display post content */}
               <div className="grid grid-cols-2 my-6">
                 <div className="grid grid-cols-2">
                   <div className="avatar placeholder">
-                    <div className="w-12 rounded-full text-neutral-content">
+                    <div className="h-8 w-8 rounded-full overflow-hidden">
                       <img
                         alt="Tailwind CSS Navbar component"
-                        src={`http://localhost:5000/${post.Image}`}
+                        src={`https://verifyid-backend.onrender.com/${post.Profile_Url}`}
+                        className="object-cover w-full h-full"
                       />
                     </div>
                   </div>
-                  <p>{name}</p>
-                </div>
-
-                {post.Status === "Found" && (
-                  <Link
-                    className="p-1 border border-gray-400 rounded details-btn"
-                    to={`/post/${post.post_Id}`}
-                  >
-                    Details
-                  </Link>
-                )}
-              </div>
-
-              <div className="post-content">
-                <p className="text-left">{post.Email}</p>
-                <p className="text-left">{post.Contact}</p>
-                <p className="text-left">{post.Location}</p>
-                <p className="text-left">{post.Description}</p>
-                <p className="text-left">{post.Identification}</p>
-                {post.Identification === "NID" ? (
-                  <img src="https://i.ibb.co/51ntN8n/nid.jpg" alt="Post" />
-                ) : post.Identification === "Certificate" ? (
-                  <img
-                    src="https://i.ibb.co/G58WTDf/certificate.jpg"
-                    alt="Post"
-                  />
-                ) : post.Identification === "Licence" ? (
-                  <img src="https://i.ibb.co/jT445Qt/licence.jpg" alt="Post" />
-                ) : null}
-              </div>
-
-              <div className="reactions-comments">
-                {/* Comment input field */}
-                <div className="comment-input">
-                  <input
-                    type="text"
-                    className="mt-2 bg-white"
-                    placeholder="Write a comment..."
-                    value={commentText[post.post_Id] || ""}
-                    onChange={(e) => handleCommentChange(post.post_Id, e)}
-                  />
-
-                  <div className="flex gap-2">
-                    <div>
-                      {comments.length > 1 ? (
-                        <small>{comments.length} Comments</small>
-                      ) : (
-                        <small>{comments.length} Comment</small>
-                      )}
-                    </div>
-
-                    <div>
-                      {replys.length > 1 ? (
-                        <small>{replys.length} Replys</small>
-                      ) : (
-                        <small>{replys.length} Reply</small>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                {/* <div className="reaction-container">
-                <span
-                  onClick={() => handleLocalReaction(post.post_Id, "like")}
-                  className="bg-white reaction-btn"
-                >
-                  👍 {localReactions.like}
-                </span>
-                <span
-                  onClick={() => handleLocalReaction(post.post_Id, "love")}
-                  className="bg-white reaction-btn"
-                >
-                  ❤️ {localReactions.love}
-                </span>
-                <span
-                  onClick={() => handleLocalReaction(post.post_Id, "laugh")}
-                  className="bg-white reaction-btn"
-                >
-                  😆 {localReactions.laugh}
-                </span>
-                <span
-                  onClick={() => handleLocalReaction(post.post_Id, "angry")}
-                  className="bg-white reaction-btn"
-                >
-                  😠 {localReactions.angry}
-                </span>
-              </div> */}
-                <button
-                  style={{
-                    border: "1px solid #A8A8A8",
-                    backgroundColor: "white",
-                    color: "black",
-                    borderRadius: "10px",
-                  }}
-                  onClick={() => handleCommentSubmit(post.post_Id)}
-                >
-                  Post
-                </button>
-              </div>
-
-              {comments &&
-                comments
-                  .filter((comment) => comment.postPostId === post.post_Id)
-                  .map((comment) => (
-                    <div className="text-left" key={comment.id}>
-                      <div
-                        className=""
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "6px",
-                          justifyContent: "left",
-                        }}
-                      >
-                        <div className="-space-x-6 avatar-group rtl:space-x-reverse">
-                          <div className="avatar placeholder">
-                            <div className="w-12 text-neutral-content">
-                              <img
-                                alt=""
-                                src={`http://localhost:5000/${post.Image}`}
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <p>{comment.content}</p>
-                      </div>
-
-                      {/* Buttons for reply, delete, and edit */}
-                      <div className="flex gap-2">
-                        <small
-                          className="font-semibold cursor-pointer"
-                          onClick={() => handleReply(comment.id)}
-                        >
-                          Reply
-                        </small>
-                        <small
-                          className="font-semibold cursor-pointer"
-                          onClick={() => handleEdit(comment.id)}
-                        >
-                          Edit
-                        </small>
-                        <small
-                          className="font-semibold cursor-pointer"
-                          onClick={() =>
-                            handleDelete(comment.postPostId, comment.id)
-                          }
-                        >
-                          Delete
-                        </small>
-                      </div>
-                      {/* Input field for reply */}
-                      {isReplying && replyingTo === comment.id && (
-                        <div>
-                          <input
-                            type="text"
-                            placeholder="Write a reply..."
-                            value={replyText}
-                            onChange={handleReplyTextChange}
-                          />
-
-                          <button
-                            onClick={() =>
-                              handleReplyToComment(
-                                comment.postPostId,
-                                comment.id
-                              )
-                            }
-                          >
-                            Post Reply
-                          </button>
-                        </div>
-                      )}
-
-                      {isEditing && commentEditId === comment.id && (
-                        <div>
-                          <input
-                            type="text"
-                            placeholder="Write edit reply..."
-                            value={editReplyText}
-                            onChange={handleEditReplyTextChange}
-                          />
-                          <button
-                            onClick={() =>
-                              handleEditedCommentSubmit(
-                                comment.postPostId,
-                                comment.id
-                              )
-                            }
-                          >
-                            Update Reply
-                          </button>
-                        </div>
-                      )}
-
-                      {/* Display replies for this comment */}
-                      {replys &&
-                        replys
-                          .filter((reply) => reply.commentId === comment.id)
-                          .map((reply) => (
-                            <div className="ms-4" key={reply.id}>
-                              <div
-                                className=""
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                  gap: "6px",
-                                  justifyContent: "left",
-                                }}
-                              >
-                                <div className="-space-x-6 avatar-group rtl:space-x-reverse">
-                                  <div className="avatar placeholder">
-                                    <div className="w-12 text-neutral-content">
-                                      <img
-                                        alt=""
-                                        src={`http://localhost:5000/${image}`}
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-                                <p>{reply.content}</p>
-                              </div>
-
-                              {/* Buttons for reply, delete, and edit */}
-                              <div className="flex gap-2">
-                                <small
-                                  className="font-semibold cursor-pointer"
-                                  onClick={() => handleEditReply(reply.id)}
-                                >
-                                  Edit
-                                </small>
-                                <small
-                                  className="font-semibold cursor-pointer"
-                                  onClick={() =>
-                                    handleDeleteReply(
-                                      reply.postPostId,
-                                      reply.commentId,
-                                      reply.id
-                                    )
-                                  }
-                                >
-                                  Delete
-                                </small>
-                              </div>
-
-                              {/* Input field for reply */}
-                              {isReplyEditing &&
-                                replyBeingEdited === reply.id && (
-                                  <div>
-                                    <input
-                                      type="text"
-                                      placeholder="Write edit reply..."
-                                      value={editedReply}
-                                      onChange={(e) =>
-                                        handleEditedReplyTextChange(e)
-                                      }
-                                    />
-                                    <button
-                                      onClick={() =>
-                                        handleEditedReplySubmit(
-                                          reply.postPostId,
-                                          reply.commentId,
-                                          reply.id,
-                                          editedReply
-                                        )
-                                      }
-                                    >
-                                      Update Reply
-                                    </button>
-                                  </div>
-                                )}
-                            </div>
-                          ))}
-                    </div>
-                  ))}
-            </div>
-          ))
-        ) : posts.length ? (
-          posts.map((post) => (
-            <div className="post" key={post.post_Id}>
-              {/* Display post content */}
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "6px",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div className="post-header">
-                  <div className="avatar placeholder">
-                    <div className="w-12 rounded-full text-neutral-content">
-                      <img
-                        alt="Tailwind CSS Navbar component"
-                        src={`http://localhost:5000/${post.Image}`}
-                      />
-                    </div>
-                  </div>
-                  <p>{name}</p>
+                  <p>{post.Name}</p>
                 </div>
 
                 {post.Status === "Found" && (
@@ -701,245 +405,91 @@ const PostDisplay = () => {
                   <img src="https://i.ibb.co/jT445Qt/licence.jpg" alt="Post" />
                 ) : null}
               </div>
-
-              <div className="grid grid-cols-2 items-center">
-                {/* Comment input field */}
-                <div className="comment-input">
-                  <textarea
-                    type="text"
-                    className="mt-2 textarea textarea-bordered  w-full max-w-xs"
-                    placeholder="Write a comment..."
-                    value={commentText[post.post_Id] || ""}
-                    onChange={(e) => handleCommentChange(post.post_Id, e)}
-                  />
-
-                  <div className="flex gap-2">
-                    <div>
-                      {comments.length > 1 ? (
-                        <small>{comments.length} Comments</small>
-                      ) : (
-                        <small>{comments.length} Comment</small>
-                      )}
-                    </div>
-
-                    <div>
-                      {replys.length > 1 ? (
-                        <small>{replys.length} Replys</small>
-                      ) : (
-                        <small>{replys.length} Reply</small>
-                      )}
+            </div>
+          ))
+        ) : posts.length ? (
+          posts.map((post) => (
+            <div className="post" key={post.post_Id}>
+              {/* Display post content */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div className="post-header">
+                  <div className="avatar placeholder">
+                    <div className="w-12 rounded-full text-neutral-content">
+                      <img
+                        alt="Tailwind CSS Navbar component"
+                        src={`https://verifyid-backend.onrender.com/${post.Profile_Url}`}
+                      />
                     </div>
                   </div>
+                  <p>{post.Name}</p>
                 </div>
 
-                {/* <div className="reaction-container">
-                <span
-                  onClick={() => handleLocalReaction(post.post_Id, "like")}
-                  className="reaction-btn bg-white"
-                >
-                  👍 {localReactions.like}
-                </span>
-                <span
-                  onClick={() => handleLocalReaction(post.post_Id, "love")}
-                  className="reaction-btn bg-white"
-                >
-                  ❤️ {localReactions.love}
-                </span>
-                <span
-                  onClick={() => handleLocalReaction(post.post_Id, "laugh")}
-                  className="reaction-btn bg-white"
-                >
-                  😆 {localReactions.laugh}
-                </span>
-                <span
-                  onClick={() => handleLocalReaction(post.post_Id, "angry")}
-                  className="reaction-btn bg-white"
-                >
-                  😠 {localReactions.angry}
-                </span>
-              </div> */}
-                <button
-                  className=" btn"
-                  onClick={() => handleCommentSubmit(post.post_Id)}
-                >
-                  Post
-                </button>
+                {post.Status === "Found" && (
+                  <Link
+                    className="p-1 border border-gray-400 rounded details-btn"
+                    to={`/post/${post.post_Id}`}
+                  >
+                    Details
+                  </Link>
+                )}
               </div>
 
-              {comments &&
-                comments
-                  .filter((comment) => comment.postPostId === post.post_Id)
-                  .map((comment) => (
-                    <div className="text-left" key={comment.id}>
-                      <div
-                        className=""
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "6px",
-                          justifyContent: "left",
-                        }}
-                      >
-                        <div className="-space-x-6 avatar-group rtl:space-x-reverse">
-                          <div className="avatar placeholder">
-                            <div className="w-12 text-neutral-content">
-                              <img
-                                alt=""
-                                src={`http://localhost:5000/${post.Image}`}
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <p>{comment.content}</p>
-                      </div>
+              <div className="post-content">
+                <p className="text-left">
+                  <span className="font-bold">Name: </span>
+                  {post.Name}
+                </p>
 
-                      {/* Buttons for reply, delete, and edit */}
-                      <div className="flex gap-2">
-                        <small
-                          className="font-semibold cursor-pointer"
-                          onClick={() => handleReply(comment.id)}
-                        >
-                          Reply
-                        </small>
-                        <small
-                          className="font-semibold cursor-pointer"
-                          onClick={() => handleEdit(comment.id)}
-                        >
-                          Edit
-                        </small>
-                        <small
-                          className="font-semibold cursor-pointer"
-                          onClick={() =>
-                            handleDelete(comment.postPostId, comment.id)
-                          }
-                        >
-                          Delete
-                        </small>
-                      </div>
-                      {/* Input field for reply */}
-                      {isReplying && replyingTo === comment.id && (
-                        <div>
-                          <input
-                            type="text"
-                            placeholder="Write a reply..."
-                            value={replyText}
-                            onChange={handleReplyTextChange}
-                          />
+                <p className="text-left">
+                  <span className="font-bold">Status: </span>
 
-                          <button
-                            onClick={() =>
-                              handleReplyToComment(
-                                comment.postPostId,
-                                comment.id
-                              )
-                            }
-                          >
-                            Post Reply
-                          </button>
-                        </div>
-                      )}
+                  {post.Status}
+                </p>
+                <p className="text-left">
+                  <span className="font-bold">Type: </span>
 
-                      {isEditing && commentEditId === comment.id && (
-                        <div>
-                          <input
-                            type="text"
-                            placeholder="Write edit reply..."
-                            value={editReplyText}
-                            onChange={handleEditReplyTextChange}
-                          />
-                          <button
-                            onClick={() =>
-                              handleEditedCommentSubmit(
-                                comment.postPostId,
-                                comment.id
-                              )
-                            }
-                          >
-                            Update Reply
-                          </button>
-                        </div>
-                      )}
+                  {post.Identification}
+                </p>
+                <p className="text-left">
+                  <span className="font-bold">Last 6 digit: </span>
 
-                      {/* Display replies for this comment */}
-                      {replys &&
-                        replys
-                          .filter((reply) => reply.commentId === comment.id)
-                          .map((reply) => (
-                            <div className="ms-4" key={reply.id}>
-                              <div
-                                className=""
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                  gap: "6px",
-                                  justifyContent: "left",
-                                }}
-                              >
-                                <div className="-space-x-6 avatar-group rtl:space-x-reverse">
-                                  <div className="avatar placeholder">
-                                    <div className="w-12 text-neutral-content">
-                                      <img
-                                        alt=""
-                                        src={`http://localhost:5000/${image}`}
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-                                <p>{reply.content}</p>
-                              </div>
+                  {post.IdNumber.slice(-6)}
+                </p>
 
-                              {/* Buttons for reply, delete, and edit */}
-                              <div className="flex gap-2">
-                                <small
-                                  className="font-semibold cursor-pointer"
-                                  onClick={() => handleEditReply(reply.id)}
-                                >
-                                  Edit
-                                </small>
-                                <small
-                                  className="font-semibold cursor-pointer"
-                                  onClick={() =>
-                                    handleDeleteReply(
-                                      reply.postPostId,
-                                      reply.commentId,
-                                      reply.id
-                                    )
-                                  }
-                                >
-                                  Delete
-                                </small>
-                              </div>
+                <p className="text-left">
+                  {" "}
+                  <span className="font-bold">Owner Name: </span>
+                  {post.Owner_Name}
+                </p>
+                <p className="text-left">
+                  {" "}
+                  <span className="font-bold">Location: </span>
+                  {post.Location}
+                </p>
+                <p className="text-left">
+                  {" "}
+                  <span className="font-bold">Description: </span>
+                  {post.Description}
+                </p>
 
-                              {/* Input field for reply */}
-                              {isReplyEditing &&
-                                replyBeingEdited === reply.id && (
-                                  <div>
-                                    <input
-                                      type="text"
-                                      placeholder="Write edit reply..."
-                                      value={editedReply}
-                                      onChange={(e) =>
-                                        handleEditedReplyTextChange(e)
-                                      }
-                                    />
-                                    <button
-                                      onClick={() =>
-                                        handleEditedReplySubmit(
-                                          reply.postPostId,
-                                          reply.commentId,
-                                          reply.id,
-                                          editedReply
-                                        )
-                                      }
-                                    >
-                                      Update Reply
-                                    </button>
-                                  </div>
-                                )}
-                            </div>
-                          ))}
-                    </div>
-                  ))}
+                {post.Identification === "NID" ? (
+                  <img src="https://i.ibb.co/51ntN8n/nid.jpg" alt="Post" />
+                ) : post.Identification === "Certificate" ? (
+                  <img
+                    src="https://i.ibb.co/G58WTDf/certificate.jpg"
+                    alt="Post"
+                  />
+                ) : post.Identification === "Licence" ? (
+                  <img src="https://i.ibb.co/jT445Qt/licence.jpg" alt="Post" />
+                ) : null}
+              </div>
             </div>
           ))
         ) : (

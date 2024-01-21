@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useCreateAdminNotificationMutation } from "../../features/adminNotification/adminNotification";
 import { useGetSinglePostQuery } from "../../features/post/post";
 import { useCreateUserNotificationMutation } from "../../features/userNotification/userNotification";
@@ -11,7 +11,10 @@ const Verify = () => {
   const [isMatch, setIsMatch] = useState(false);
   const userId = localStorage.getItem("userId");
   const role = localStorage.getItem("role");
+  const email = localStorage.getItem("email");
 
+  const navigate = useNavigate();
+  console.log("params", id);
   const { data, isLoading, isError, error } = useGetSinglePostQuery(id);
   const [posts, setPosts] = useState([]);
   useEffect(() => {
@@ -44,14 +47,24 @@ const Verify = () => {
       IdNumber: post.IdNumber,
     };
 
+    const data1 = {
+      Name: post.Name,
+      Email: email,
+      Contact: post.Contact,
+      Location: post.Location,
+      IdNumber: post.IdNumber,
+    };
+
+    console.log("data1", data1);
+
     const userRes = await createUserNotification({ id: userId, data });
 
-    const adminRes = await createAdminNotification({ id: role, data });
+    const adminRes = await createAdminNotification(data1);
 
     if (userRes || adminRes) {
       toast.success("Successfully Insert");
 
-      console.log("Response", userRes, adminRes);
+      navigate("/user-notification");
     }
   };
 

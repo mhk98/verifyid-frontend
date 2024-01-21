@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const postApi = createApi({
   reducerPath: "postApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api/v1/",
+    baseUrl: "https://verifyid-backend.onrender.com/api/v1/",
     // baseUrl: "https://createabit-backend.onrender.com/api/v1/",
   }),
 
@@ -34,6 +34,12 @@ export const postApi = createApi({
       invalidatesTags: ["post"],
     }),
 
+    getMyPost: build.query({
+      query: (id) => ({
+        url: `/post/myPost/${id}`,
+      }),
+      invalidatesTags: ["post"],
+    }),
     getSinglePost: build.query({
       query: (id) => ({
         url: `/post/${id}`,
@@ -59,4 +65,5 @@ export const {
   useGetAllPostQuery,
   useDeletePostMutation,
   useEditPostDataMutation,
+  useGetMyPostQuery,
 } = postApi;

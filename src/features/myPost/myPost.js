@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const myPostApi = createApi({
   reducerPath: "myPostApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api/v1/",
+    baseUrl: "https://verifyid-backend.onrender.com/api/v1/",
     // baseUrl: "https://createabit-backend.onrender.com/api/v1/",
   }),
 
