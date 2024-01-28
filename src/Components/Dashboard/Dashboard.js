@@ -32,6 +32,16 @@ const Dashboard = () => {
               <Link to="/dashboard/users">All Users</Link>
             </li>
           )}
+          {Role === "admin" && (
+            <li>
+              <Link to="/dashboard/success">Id Status</Link>
+            </li>
+          )}
+          {Role === "admin" && (
+            <li>
+              <Link to="/dashboard/status">Post Status</Link>
+            </li>
+          )}
           <li>
             <Link to="/dashboard/posts">Posts</Link>
           </li>

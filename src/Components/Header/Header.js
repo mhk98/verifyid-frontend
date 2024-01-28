@@ -12,6 +12,7 @@ const Header = () => {
   const image = localStorage.getItem("image");
   const userId = localStorage.getItem("userId");
   const Role = localStorage.getItem("role");
+  const name = localStorage.getItem("name");
 
   const navigate = useNavigate();
 
@@ -66,7 +67,7 @@ const Header = () => {
     //       <div className="w-10 rounded-full">
     //         <img
     //           alt="Tailwind CSS Navbar component"
-    //           src={`https://verifyid-backend.onrender.com/${image}`}
+    //           src={`http://localhost:5000/${image}`}
     //         />
     //       </div>
     //     </div>
@@ -112,6 +113,11 @@ const Header = () => {
                 <div className="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
                   <div className="flex items-center flex-shrink-0">
                     <img className="w-auto h-8" src={logo} alt="Your Company" />
+                  </div>
+                  <div className="text-white lg:ml-7 lg:first-line:mr-10 ">
+                    {" "}
+                    <span className="text-2xl  text-amber-500">D</span>oc{" "}
+                    <span className="text-2xl text-amber-500">T</span>rack
                   </div>
                   <div className="hidden sm:ml-6 sm:block">
                     <div className="flex space-x-4">
@@ -172,14 +178,29 @@ const Header = () => {
                       >
                         Dashboard
                       </Link>
+
                       <Link
-                        to="/contact"
+                        to="/add-review"
                         className={classNames(
                           "text-gray-300 hover:bg-gray-700 hover:text-white",
                           "rounded-md px-3 py-2 text-sm font-medium"
                         )}
                         aria-current={
-                          window.location.pathname === "/dashboard"
+                          window.location.pathname === "/add-review"
+                            ? "page"
+                            : undefined
+                        }
+                      >
+                        Add Review
+                      </Link>
+                      <Link
+                        to="/add-review"
+                        className={classNames(
+                          "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          "rounded-md px-3 py-2 text-sm font-medium"
+                        )}
+                        aria-current={
+                          window.location.pathname === "/contact"
                             ? "page"
                             : undefined
                         }
@@ -193,7 +214,7 @@ const Header = () => {
                           "rounded-md px-3 py-2 text-sm font-medium"
                         )}
                         aria-current={
-                          window.location.pathname === "/dashboard"
+                          window.location.pathname === "/blog"
                             ? "page"
                             : undefined
                         }
@@ -258,11 +279,20 @@ const Header = () => {
                       <Menu.Button className="relative flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
-                        <img
-                          className="h-8 w-8 rounded-full"
-                          src={`https://verifyid-backend.onrender.com/${image}`}
-                          alt=""
-                        />
+
+                        {token ? (
+                          <div className="">
+                            <img
+                              className="h-8 w-8 rounded-full"
+                              src={`http://localhost:5000/${image}`}
+                              alt=""
+                            />
+
+                            <span className="text-white">{`${name}`}</span>
+                          </div>
+                        ) : (
+                          ""
+                        )}
                       </Menu.Button>
                     </div>
                     <Transition
@@ -364,6 +394,21 @@ const Header = () => {
                 }
               >
                 Dashboard
+              </Link>
+
+              <Link
+                to="/add-review"
+                className={classNames(
+                  "text-gray-300 hover:bg-gray-700 hover:text-white",
+                  "rounded-md px-3 py-2 text-sm font-medium"
+                )}
+                aria-current={
+                  window.location.pathname === "/add-review"
+                    ? "page"
+                    : undefined
+                }
+              >
+                Add Review
               </Link>
 
               <Link

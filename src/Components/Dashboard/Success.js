@@ -1,13 +1,11 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import { useGetAllUserNotificationQuery } from "../../features/userNotification/userNotification";
+import React, { useEffect, useState } from "react";
 import {
   useDeleteAdminNotificationMutation,
   useGetAllAdminNotificationQuery,
 } from "../../features/adminNotification/adminNotification";
 import toast from "react-hot-toast";
 
-const AdminNotification = () => {
+const Success = () => {
   const Role = localStorage.getItem("role");
 
   const {
@@ -55,22 +53,17 @@ const AdminNotification = () => {
             <thead>
               <tr className="border">
                 <th className="font-bold text-black">No</th>
-                <th className="font-bold text-black">Message</th>
+                <th className="font-bold text-black">Id</th>
+                <th className="font-bold text-black">Status</th>
                 <th className="font-bold text-black">Action</th>
-                {/* <th className="font-bold text-black">Action</th> */}
               </tr>
             </thead>
             <tbody>
               {adminNotification.map((notification) => (
                 <tr className="bg-base-200" key={notification.Id}>
                   <td>{notification.Id}</td>
-                  <td>
-                    We send a notification.
-                    {/* <span className="font-bold"> {notification.Name}.</span> */}
-                    This is user email
-                    <span className="font-bold ms-1">{notification.Email}</span>
-                    <span className="ms-1">to getting his information</span>
-                  </td>
+                  <td>{notification.Email}</td>
+                  <td>Success</td>
                   <td
                     className="cursor-pointer"
                     onClick={() => handleDeleteUser(notification.Id)}
@@ -96,4 +89,4 @@ const AdminNotification = () => {
   );
 };
 
-export default AdminNotification;
+export default Success;

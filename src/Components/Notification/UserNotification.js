@@ -65,7 +65,7 @@ const UserNotification = () => {
                       {notification.Contact}
                     </span>{" "}
                     for getting your documents
-                    <span className="font-bold"> {notification.Name}</span>
+                    {/* <span className="font-bold"> {notification.Name}</span> */}
                   </td>
                   <td
                     className="cursor-pointer"

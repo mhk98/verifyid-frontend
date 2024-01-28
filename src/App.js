@@ -24,6 +24,9 @@ import Footer from "./Components/Footer";
 import NidDetails from "./Components/Blog/NidDetails";
 import CertificateDetails from "./Components/Blog/CertificateDetails";
 import Licence from "./Components/Blog/Licence";
+import Success from "./Components/Dashboard/Success";
+import PostStatus from "./Components/Dashboard/PostStatus";
+import Review from "./Components/Review/Review";
 
 const App = () => {
   return (
@@ -68,6 +71,7 @@ const App = () => {
           <Route path="/certificate-details" element={<CertificateDetails />} />
           <Route path="/licence-details" element={<Licence />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/add-review" element={<Review />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<UpdatePassword />} />
@@ -102,6 +106,22 @@ const App = () => {
               element={
                 <RequireAuth>
                   <Users></Users>
+                </RequireAuth>
+              }
+            ></Route>
+            <Route
+              path="success"
+              element={
+                <RequireAuth>
+                  <Success></Success>
+                </RequireAuth>
+              }
+            ></Route>
+            <Route
+              path="status"
+              element={
+                <RequireAuth>
+                  <PostStatus></PostStatus>
                 </RequireAuth>
               }
             ></Route>

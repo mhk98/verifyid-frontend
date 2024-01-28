@@ -62,7 +62,7 @@ const Status = () => {
                 <td>
                   <img
                     className="w-12 h-12"
-                    src={`https://verifyid-backend.onrender.com/${post.Image}`}
+                    src={`http://localhost:5000/${post.image}`}
                     alt=""
                   />
                 </td>

@@ -91,8 +91,10 @@ const PostDisplay = () => {
     }
   }, [data, isLoading, isError, error]);
 
-  console.log("Posts", data);
+  console.log("Posts", posts);
   // const [editPost] = useEditPostMutation();
+
+  const postsFilter = posts.filter((post) => post.Post_Status === "Approved");
 
   const handleLocalReaction = async (postId, reactionType) => {
     try {
@@ -289,7 +291,7 @@ const PostDisplay = () => {
   };
 
   useEffect(() => {
-    const match = posts.filter((d) =>
+    const match = postsFilter.filter((d) =>
       d.Identification.toLowerCase().includes(searchText)
     );
     setSearchResult(match);
@@ -338,7 +340,7 @@ const PostDisplay = () => {
                     <div className="h-8 w-8 rounded-full overflow-hidden">
                       <img
                         alt="Tailwind CSS Navbar component"
-                        src={`https://verifyid-backend.onrender.com/${post.Profile_Url}`}
+                        src={`http://localhost:5000/${post.Profile_Url}`}
                         className="object-cover w-full h-full"
                       />
                     </div>
@@ -408,7 +410,7 @@ const PostDisplay = () => {
             </div>
           ))
         ) : posts.length ? (
-          posts.map((post) => (
+          postsFilter.map((post) => (
             <div className="post" key={post.post_Id}>
               {/* Display post content */}
               <div
@@ -424,7 +426,7 @@ const PostDisplay = () => {
                     <div className="w-12 rounded-full text-neutral-content">
                       <img
                         alt="Tailwind CSS Navbar component"
-                        src={`https://verifyid-backend.onrender.com/${post.Profile_Url}`}
+                        src={`http://localhost:5000/${post.Profile_Url}`}
                       />
                     </div>
                   </div>

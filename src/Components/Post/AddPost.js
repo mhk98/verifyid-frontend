@@ -33,7 +33,7 @@ const AddPost = () => {
     const formData = new FormData();
     formData.append("Name", name);
     formData.append("Email", email);
-    formData.append("Image", image);
+    formData.append("image", image);
     formData.append("Contact", contact);
     formData.append("Identification", identification);
     formData.append("IdNumber", idNumber);
