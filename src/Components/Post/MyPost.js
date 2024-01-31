@@ -32,6 +32,8 @@ const MyPost = () => {
   const [editedComment, setEditedComment] = useState("");
   const [replys, setReplys] = useState([]);
 
+  const postsFilter = posts.filter((post) => post.Post_Status === "Approved");
+
   const [localReactions, setLocalReactions] = useState({
     like: 0,
     love: 0,
@@ -298,7 +300,7 @@ const MyPost = () => {
         <h2 className="text-center text-xl my-8 font-bold">My Posts</h2>
         {/* Iterate through posts and render each one */}
         {posts.length > 0 ? (
-          posts.map((post, index) => (
+          postsFilter.map((post, index) => (
             <div className="post grid grid-cols-1 border mb-6" key={index}>
               {/* Display post content */}
               <div className=" grid grid-cols-2">
@@ -307,7 +309,7 @@ const MyPost = () => {
                     <div className=" text-neutral-content rounded-full w-12">
                       <img
                         alt="Tailwind CSS Navbar component"
-                        src={`http://localhost:5000/${post.Profile_Url}`}
+                        src={`https://doctrack-server.onrender.com/${post.Profile_Url}`}
                       />
                     </div>
                   </div>

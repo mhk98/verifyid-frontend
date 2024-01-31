@@ -340,7 +340,7 @@ const PostDisplay = () => {
                     <div className="h-8 w-8 rounded-full overflow-hidden">
                       <img
                         alt="Tailwind CSS Navbar component"
-                        src={`http://localhost:5000/${post.Profile_Url}`}
+                        src={`https://doctrack-server.onrender.com/${post.Profile_Url}`}
                         className="object-cover w-full h-full"
                       />
                     </div>
@@ -426,7 +426,7 @@ const PostDisplay = () => {
                     <div className="w-12 rounded-full text-neutral-content">
                       <img
                         alt="Tailwind CSS Navbar component"
-                        src={`http://localhost:5000/${post.Profile_Url}`}
+                        src={`https://doctrack-server.onrender.com/${post.Profile_Url}`}
                       />
                     </div>
                   </div>

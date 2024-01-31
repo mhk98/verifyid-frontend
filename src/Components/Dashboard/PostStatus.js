@@ -33,10 +33,24 @@ const PostStatus = () => {
     const data = {
       Post_Status: selectedStatus,
     };
-    const res = await axios.patch(`http://localhost:5000/api/v1/post/${id}`, data);
+    const res = await axios.patch(
+      `https://doctrack-server.onrender.com/api/v1/post/${id}`,
+      data
+    );
 
     if (res) {
       toast.success("Successfully update post");
+      window.location.reload();
+    }
+  };
+  const handleDelete = async (id) => {
+    const res = await axios.delete(
+      `https://doctrack-server.onrender.com/api/v1/post/${id}`
+    );
+
+    if (res) {
+      toast.success("Successfully delete post");
+      window.location.reload();
     }
   };
 
@@ -51,6 +65,7 @@ const PostStatus = () => {
             <th>Identification</th>
             <th>Status</th>
             <th>Action</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -64,7 +79,7 @@ const PostStatus = () => {
                 <td>
                   <img
                     className="w-12 h-12"
-                    src={`http://localhost:5000/${post.image}`}
+                    src={`https://doctrack-server.onrender.com/${post.image}`}
                     alt=""
                   />
                 </td>
@@ -87,6 +102,14 @@ const PostStatus = () => {
                     onClick={() => handleEdit(post.post_Id)}
                   >
                     Submit
+                  </button>
+                </td>
+                <td>
+                  <button
+                    className="bg-white"
+                    onClick={() => handleDelete(post.post_Id)}
+                  >
+                    Delete
                   </button>
                 </td>
               </tr>

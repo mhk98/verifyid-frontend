@@ -8,7 +8,10 @@ const Review = () => {
     const data = {
       review: review,
     };
-    const res = await axios.post("http://localhost:5000/api/v1/review", data);
+    const res = await axios.post(
+      "https://doctrack-server.onrender.com/api/v1/review",
+      data
+    );
     if (res) {
       toast("Successfully insert review");
     }
@@ -16,7 +19,9 @@ const Review = () => {
 
   const [allReviews, setAllReviews] = useState([]);
   const allReview = async () => {
-    const res = await axios.get("http://localhost:5000/api/v1/review");
+    const res = await axios.get(
+      "https://doctrack-server.onrender.com/api/v1/review"
+    );
     setAllReviews(res.data.data);
   };
 

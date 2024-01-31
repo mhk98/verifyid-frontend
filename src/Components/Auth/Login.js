@@ -25,7 +25,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/user/login",
+        "https://doctrack-server.onrender.com/api/v1/user/login",
         formData
       );
 

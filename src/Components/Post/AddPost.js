@@ -123,6 +123,9 @@ const AddPost = () => {
           <option>NID</option>
           <option>Certificate</option>
           <option>Licence</option>
+          <option>Admit Card</option>
+          <option>Dolil</option>
+          <option>Others</option>
         </select>
         <div className="form-group">
           <label htmlFor="password">ID Number</label>
