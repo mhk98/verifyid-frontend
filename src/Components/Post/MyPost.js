@@ -295,7 +295,7 @@ const MyPost = () => {
   };
 
   return (
-    <div className="post-creation">
+    <div className="post-creation" style={{ marginTop: "100px" }}>
       <div className=" post-display my-12 grid grid-cols-1  max-w-2xl mx-auto border p-4">
         <h2 className="text-center text-xl my-8 font-bold">My Posts</h2>
         {/* Iterate through posts and render each one */}
@@ -414,6 +414,13 @@ const MyPost = () => {
                   />
                 ) : post.Identification === "Licence" ? (
                   <img src="https://i.ibb.co/jT445Qt/licence.jpg" alt="Post" />
+                ) : post.Identification === "Admit Card" ? (
+                  <img
+                    src="https://i.ibb.co/xHBNNND/admit-card.jpg"
+                    alt="Post"
+                  />
+                ) : post.Identification === "Dolil" ? (
+                  <img src="https://i.ibb.co/HCsdzTB/dolil.jpg" alt="Post" />
                 ) : null}
               </div>
             </div>

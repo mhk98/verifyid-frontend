@@ -18,7 +18,8 @@ import {
   useGetAllReplyQuery,
 } from "../../features/reply/reply";
 import "./PostDisplay.css";
-
+import admit from "../../image/admit-card.jpg";
+import dolil from "../../image/dolil.jpg";
 const PostDisplay = () => {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
@@ -315,8 +316,8 @@ const PostDisplay = () => {
 
   console.log("searchText", searchText);
   return (
-    <div className="post-creation">
-      <div className=" post-display my-12 grid grid-cols-1  max-w-2xl mx-auto border p-4">
+    <div className="post-creation mt-24">
+      <div className=" post-display my-12 grid grid-cols-1  max-w-4xl mx-auto border border-slate-500 p-4">
         <div className=" my-12 grid grid-cols-2 ">
           <h2 className=" text-xl font-bold ">Posts</h2>
           <div className="form-control">
@@ -332,7 +333,7 @@ const PostDisplay = () => {
         {/* <div className="post grid grid-cols-1"> */}
         {searchResult.length ? (
           searchResult.map((post) => (
-            <div className=" grid grid-cols-1 border mb-6" key={post.post_Id}>
+            <div className=" grid grid-cols-1 border mb-6 " key={post.post_Id}>
               {/* Display post content */}
               <div className="grid grid-cols-2 my-6">
                 <div className="grid grid-cols-2">
@@ -405,6 +406,13 @@ const PostDisplay = () => {
                   />
                 ) : post.Identification === "Licence" ? (
                   <img src="https://i.ibb.co/jT445Qt/licence.jpg" alt="Post" />
+                ) : post.Identification === "Admit Card" ? (
+                  <img
+                    src="https://i.ibb.co/xHBNNND/admit-card.jpg"
+                    alt="Post"
+                  />
+                ) : post.Identification === "Dolil" ? (
+                  <img src="https://i.ibb.co/HCsdzTB/dolil.jpg" alt="Post" />
                 ) : null}
               </div>
             </div>
@@ -435,7 +443,7 @@ const PostDisplay = () => {
 
                 {post.Status === "Found" && (
                   <Link
-                    className="p-1 border border-gray-400 rounded details-btn"
+                    className=" border bg-primary text-white p-3 rounded details-btn"
                     to={`/post/${post.post_Id}`}
                   >
                     Details
@@ -490,6 +498,13 @@ const PostDisplay = () => {
                   />
                 ) : post.Identification === "Licence" ? (
                   <img src="https://i.ibb.co/jT445Qt/licence.jpg" alt="Post" />
+                ) : post.Identification === "Admit Card" ? (
+                  <img
+                    src="https://i.ibb.co/xHBNNND/admit-card.jpg"
+                    alt="Post"
+                  />
+                ) : post.Identification === "Dolil" ? (
+                  <img src="https://i.ibb.co/HCsdzTB/dolil.jpg" alt="Post" />
                 ) : null}
               </div>
             </div>

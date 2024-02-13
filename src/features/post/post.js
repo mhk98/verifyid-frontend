@@ -4,7 +4,6 @@ export const postApi = createApi({
   reducerPath: "postApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://doctrack-server.onrender.com/api/v1/",
-    // baseUrl: "https://createabit-backend.onrender.com/api/v1/",
   }),
 
   tagTypes: ["post"], // Define the tag type

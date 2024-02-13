@@ -13,7 +13,7 @@ const Dashboard = () => {
         <Outlet></Outlet>
         <label
           htmlFor="my-drawer-2"
-          className="mt-8 border border-gray-300 btn btn-white drawer-button lg:hidden"
+          className="mt-20 mb-16 border border-gray-300 btn btn-white drawer-button lg:hidden"
         >
           Open drawer
         </label>

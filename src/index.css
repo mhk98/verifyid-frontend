@@ -24,7 +24,13 @@ code {
   margin-top: -200px;
 }
 
-
 .same-size-input {
   width: 100%;
+}
+
+.active {
+  /* Your active styles here */
+  color: white;
+  background-color: #4a5568; /* Example background color */
+  /* Add any other styles you want for the active state */
 }

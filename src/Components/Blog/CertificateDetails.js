@@ -7,7 +7,7 @@ import n5 from "../../image/WhatsApp Image 2024-01-14 at 19.33.25_2659262d.jpg";
 import n6 from "../../image/Screenshot_6.png";
 const CertificateDetails = () => {
   return (
-    <div className="py-12 px-12">
+    <div className="py-12 px-12" style={{ marginTop: "50px" }}>
       <h2 className="text-xl font-bold">
         সার্টিফিকেট হারিয়ে গেছে? কিভাবে নতুন করে সার্টিফিকেট তুলবেন?
       </h2>

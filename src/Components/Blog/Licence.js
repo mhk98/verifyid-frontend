@@ -2,7 +2,7 @@ import React from "react";
 import licence from "../../image/Screenshot_8.png";
 const Licence = () => {
   return (
-    <div className="py-12 px-12">
+    <div className="py-12 px-12" style={{ marginTop: "50px" }}>
       <h2 className="text-xl font-bold">
         ড্রাইভিং লাইসেন্স হারিয়ে গেছে? কিভাবে নতুন করে ড্রাইভিং লাইসেন্স
         তুলবেন?

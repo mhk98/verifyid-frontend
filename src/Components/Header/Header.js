@@ -6,7 +6,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, useNavigate } from "react-router-dom";
 import { useGetAllAdminNotificationQuery } from "../../features/adminNotification/adminNotification";
 import { useGetAllUserNotificationQuery } from "../../features/userNotification/userNotification";
-import logo from "../../image/logo.png";
+import logo from "../../image/logo final.png";
 const Header = () => {
   const token = localStorage.getItem("token");
   const image = localStorage.getItem("image");
@@ -56,6 +56,12 @@ const Header = () => {
 
   console.log("notification", userNotification);
 
+  const [activeItem, setActiveItem] = useState(null);
+
+  // Function to handle click on menu item
+  const handleItemClick = (index) => {
+    setActiveItem(index);
+  };
   return (
     // <div className="flex-none gap-2">
     //   <div className="dropdown dropdown-end">
@@ -92,15 +98,15 @@ const Header = () => {
     //   </div>
     // </div>
 
-    <Disclosure as="nav" className="bg-gray-800 ">
+    <Disclosure as="nav" className="bg-gray-400 ">
       {({ open }) => (
         <div>
-          <div className="fixed top-0 left-0 right-0 z-50 bg-gray-800">
+          <div className="fixed top-0 left-0 right-0 z-50 bg-white">
             <div className=" px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
               <div className="relative flex items-center justify-between h-16">
                 <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                   {/* Mobile menu button*/}
-                  <Disclosure.Button className="relative inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                  <Disclosure.Button className="relative inline-flex items-center justify-center p-2 text-black rounded-md hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                     <span className="absolute -inset-0.5" />
                     <span className="sr-only">Open main menu</span>
                     {open ? (
@@ -112,21 +118,29 @@ const Header = () => {
                 </div>
                 <div className="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
                   <div className="flex items-center flex-shrink-0">
-                    <img className="w-auto h-8" src={logo} alt="Your Company" />
+                    <img
+                      className="w-auto h-12"
+                      src={logo}
+                      alt="Your Company"
+                    />
                   </div>
-                  <div className="text-white lg:ml-7 lg:first-line:mr-10 ">
+                  {/* <div className="text-white lg:ml-7 lg:first-line:mr-10 ">
                     {" "}
                     <span className="text-2xl  text-amber-500">D</span>oc{" "}
                     <span className="text-2xl text-amber-500">T</span>rack
-                  </div>
+                  </div> */}
                   <div className="hidden sm:ml-6 sm:block">
-                    <div className="flex space-x-4">
+                    <div className="flex space-x-4 ms-24 mt-2">
                       <Link
                         to="/"
                         className={classNames(
-                          "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          activeItem === 1 ? "active" : "",
+                          "text-black hover:bg-gray-700 hover:text-white",
                           "rounded-md px-3 py-2 text-sm font-medium"
                         )}
+                        onClick={() => {
+                          handleItemClick(1);
+                        }}
                         aria-current={
                           window.location.pathname === "/" ? "page" : undefined
                         }
@@ -137,9 +151,13 @@ const Header = () => {
                       <Link
                         to="/add-post"
                         className={classNames(
-                          "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          activeItem === 2 ? "active" : "",
+                          "text-black hover:bg-gray-700 hover:text-white",
                           "rounded-md px-3 py-2 text-sm font-medium"
                         )}
+                        onClick={() => {
+                          handleItemClick(2);
+                        }}
                         aria-current={
                           window.location.pathname === "/add-post"
                             ? "page"
@@ -152,9 +170,13 @@ const Header = () => {
                       <Link
                         to="/my-post"
                         className={classNames(
-                          "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          activeItem === 3 ? "active" : "",
+                          "text-black hover:bg-gray-700 hover:text-white",
                           "rounded-md px-3 py-2 text-sm font-medium"
                         )}
+                        onClick={() => {
+                          handleItemClick(3);
+                        }}
                         aria-current={
                           window.location.pathname === "/my-post"
                             ? "page"
@@ -167,9 +189,13 @@ const Header = () => {
                       <Link
                         to="/dashboard"
                         className={classNames(
-                          "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          activeItem === 4 ? "active" : "",
+                          "text-black hover:bg-gray-700 hover:text-white",
                           "rounded-md px-3 py-2 text-sm font-medium"
                         )}
+                        onClick={() => {
+                          handleItemClick(4);
+                        }}
                         aria-current={
                           window.location.pathname === "/dashboard"
                             ? "page"
@@ -182,9 +208,13 @@ const Header = () => {
                       <Link
                         to="/add-review"
                         className={classNames(
-                          "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          activeItem === 5 ? "active" : "",
+                          "text-black hover:bg-gray-700 hover:text-white",
                           "rounded-md px-3 py-2 text-sm font-medium"
                         )}
+                        onClick={() => {
+                          handleItemClick(5);
+                        }}
                         aria-current={
                           window.location.pathname === "/add-review"
                             ? "page"
@@ -196,9 +226,13 @@ const Header = () => {
                       <Link
                         to="/contact"
                         className={classNames(
-                          "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          activeItem === 6 ? "active" : "",
+                          "text-black hover:bg-gray-700 hover:text-white",
                           "rounded-md px-3 py-2 text-sm font-medium"
                         )}
+                        onClick={() => {
+                          handleItemClick(6);
+                        }}
                         aria-current={
                           window.location.pathname === "/contact"
                             ? "page"
@@ -210,9 +244,13 @@ const Header = () => {
                       <Link
                         to="/blog"
                         className={classNames(
-                          "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          activeItem === 7 ? "active" : "",
+                          "text-black hover:bg-gray-700 hover:text-white",
                           "rounded-md px-3 py-2 text-sm font-medium"
                         )}
+                        onClick={() => {
+                          handleItemClick(7);
+                        }}
                         aria-current={
                           window.location.pathname === "/blog"
                             ? "page"
@@ -230,7 +268,7 @@ const Header = () => {
                     <Link to="/admin-notification">
                       <button
                         type="button"
-                        className="relative p-1 text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                        className="relative p-1 text-black bg-white rounded-full hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                       >
                         <span
                           className=""
@@ -251,10 +289,10 @@ const Header = () => {
                     <Link to="/user-notification">
                       <button
                         type="button"
-                        className="relative p-1 text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                        className="relative p-1 text-white bg-white rounded-full hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                       >
                         <span
-                          className="text-white"
+                          className="text-black"
                           style={{
                             position: "absolute",
                             right: "4px",
@@ -265,7 +303,7 @@ const Header = () => {
                         </span>
                         {/* <span className="sr-only">View notifications</span> */}
                         <BellIcon
-                          className="w-6 h-6 text-white"
+                          className="w-6 h-6 text-black"
                           aria-hidden="true"
                         />
                         <span></span>
@@ -276,7 +314,7 @@ const Header = () => {
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">
                     <div>
-                      <Menu.Button className="relative flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                      <Menu.Button className="relative flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
 
@@ -288,7 +326,7 @@ const Header = () => {
                               alt=""
                             />
 
-                            <span className="text-white">{`${name}`}</span>
+                            <span className="text-black">{`${name}`}</span>
                           </div>
                         ) : (
                           ""
@@ -343,65 +381,88 @@ const Header = () => {
           </div>
 
           <Disclosure.Panel className="sm:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1">
+            <div className="px-2 pt-20 pb-3 space-y-1">
               <Link
                 to="/"
                 className={classNames(
-                  "text-gray-300 hover:bg-gray-700 hover:text-white",
-                  "block rounded-md px-3 py-2 text-base font-medium"
+                  activeItem === 1 ? "active" : "",
+                  "text-black hover:bg-gray-700 hover:text-white",
+                  "rounded-md px-3 py-2 text-sm font-medium"
                 )}
+                onClick={() => {
+                  handleItemClick(1);
+                }}
                 aria-current={
                   window.location.pathname === "/" ? "page" : undefined
                 }
               >
                 Home
               </Link>
-
+              <br />
               <Link
                 to="/add-post"
                 className={classNames(
-                  "text-gray-300 hover:bg-gray-700 hover:text-white",
-                  "block rounded-md px-3 py-2 text-base font-medium"
+                  activeItem === 2 ? "active" : "",
+                  "text-black hover:bg-gray-700 hover:text-white",
+                  "rounded-md px-3 py-2 text-sm font-medium"
                 )}
+                onClick={() => {
+                  handleItemClick(2);
+                }}
                 aria-current={
                   window.location.pathname === "/add-post" ? "page" : undefined
                 }
               >
                 Add Post
               </Link>
+              <br />
 
               <Link
                 to="/my-post"
                 className={classNames(
-                  "text-gray-300 hover:bg-gray-700 hover:text-white",
-                  "block rounded-md px-3 py-2 text-base font-medium"
+                  activeItem === 3 ? "active" : "",
+                  "text-black hover:bg-gray-700 hover:text-white",
+                  "rounded-md px-3 py-2 text-sm font-medium"
                 )}
+                onClick={() => {
+                  handleItemClick(3);
+                }}
                 aria-current={
                   window.location.pathname === "/my-post" ? "page" : undefined
                 }
               >
                 My Post
               </Link>
+              <br />
 
               <Link
                 to="/dashboard"
                 className={classNames(
-                  "text-gray-300 hover:bg-gray-700 hover:text-white",
-                  "block rounded-md px-3 py-2 text-base font-medium"
+                  activeItem === 4 ? "active" : "",
+                  "text-black hover:bg-gray-700 hover:text-white",
+                  "rounded-md px-3 py-2 text-sm font-medium"
                 )}
+                onClick={() => {
+                  handleItemClick(4);
+                }}
                 aria-current={
                   window.location.pathname === "/dashboard" ? "page" : undefined
                 }
               >
                 Dashboard
               </Link>
+              <br />
 
               <Link
                 to="/add-review"
                 className={classNames(
-                  "text-gray-300 hover:bg-gray-700 hover:text-white",
+                  activeItem === 5 ? "active" : "",
+                  "text-black hover:bg-gray-700 hover:text-white",
                   "rounded-md px-3 py-2 text-sm font-medium"
                 )}
+                onClick={() => {
+                  handleItemClick(5);
+                }}
                 aria-current={
                   window.location.pathname === "/add-review"
                     ? "page"
@@ -410,26 +471,36 @@ const Header = () => {
               >
                 Add Review
               </Link>
+              <br />
 
               <Link
                 to="/contact"
                 className={classNames(
-                  "text-gray-300 hover:bg-gray-700 hover:text-white",
+                  activeItem === 6 ? "active" : "",
+                  "text-black hover:bg-gray-700 hover:text-white",
                   "rounded-md px-3 py-2 text-sm font-medium"
                 )}
+                onClick={() => {
+                  handleItemClick(6);
+                }}
                 aria-current={
                   window.location.pathname === "/contact" ? "page" : undefined
                 }
               >
                 Contact
               </Link>
-              <br></br>
+              <br />
+
               <Link
                 to="/blog"
                 className={classNames(
-                  "text-gray-300 hover:bg-gray-700 hover:text-white",
+                  activeItem === 7 ? "active" : "",
+                  "text-black hover:bg-gray-700 hover:text-white",
                   "rounded-md px-3 py-2 text-sm font-medium"
                 )}
+                onClick={() => {
+                  handleItemClick(7);
+                }}
                 aria-current={
                   window.location.pathname === "/blog" ? "page" : undefined
                 }

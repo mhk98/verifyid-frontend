@@ -64,6 +64,7 @@ const PostStatus = () => {
             <th>Image</th>
             <th>Identification</th>
             <th>Status</th>
+            <th>Final Status</th>
             <th>Action</th>
             <th>Action</th>
           </tr>
@@ -89,13 +90,12 @@ const PostStatus = () => {
                     className="select w-full max-w-xs"
                     onChange={handleStatusChange}
                   >
-                    <option disabled value="">
-                      Choose status
-                    </option>
+                    <option>Choose status</option>
                     <option value="Pending">Pending</option>
                     <option value="Approved">Approved</option>
                   </select>
                 </td>
+                <td>{post.Post_Status}</td>
                 <td>
                   <button
                     className="bg-white"

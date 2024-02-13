@@ -42,8 +42,7 @@ const Blog = () => {
             </p>
             <div className="card-actions">
               <button className="btn btn-primary">
-                <Link to="/ licence-details">বিস্তারিত</Link>
-               
+                <Link to="/licence-details">বিস্তারিত</Link>
               </button>
             </div>
           </div>
@@ -63,8 +62,6 @@ const Blog = () => {
               একটি কপি বোর্ড কর্তৃপক্ষ তাদের সংরক্ষণাগারে রেখে দেয়। তাই যে কোনো
               শিক্ষার্থীর সার্টিফিকেট বা মূল্যবান শিক্ষাসংক্রান্ত কাগজপত্র
               অনাকাঙ্খিত ভাবে হারিয়ে গেলে বা নষ্ট হয়ে গেলে হতাশার কিছু নেই।
-
-
             </p>
             <div className="card-actions">
               <button className="btn btn-primary">

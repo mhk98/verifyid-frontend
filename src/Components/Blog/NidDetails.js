@@ -2,7 +2,7 @@ import React from "react";
 
 const NidDetails = () => {
   return (
-    <div className="py-12 px-12">
+    <div className="py-12 px-12" style={{ marginTop: "50px" }}>
       <h2 className="text-xl font-bold">
         জাতীয় পরিচয়পত্র হারিয়ে গেছে, নতুন করে কিভাবে জাতীয় পরিচয়পত্র উঠাবেন?
       </h2>
